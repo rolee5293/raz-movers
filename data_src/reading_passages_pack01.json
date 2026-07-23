@@ -1,0 +1,329 @@
+{
+  "passages": [
+    {
+      "id": 1,
+      "title": "My Dog Max",
+      "difficulty": 1,
+      "topic": "animals",
+      "wordCount": 84,
+      "text": "I have a dog. His name is Max. Max is two years old. He is brown and white. He has long ears and a short tail.\n\nMax likes to play in the park. He runs fast and catches balls. Every morning, I give him bread and meat. He drinks a lot of water. In the afternoon, we play together in the garden. He is very happy.\n\nAt night, Max sleeps next to my bed. He is my best friend. I love Max very much.",
+      "questions": [
+        {
+          "q": "What colour is Max?",
+          "options": [
+            "Black and white",
+            "Brown and white",
+            "All brown",
+            "All white"
+          ],
+          "answer": 1,
+          "explanation": "文中说 “He is brown and white.”，选 B，你真细心！"
+        },
+        {
+          "q": "Where does Max sleep at night?",
+          "options": [
+            "In the park",
+            "On the chair",
+            "Next to the bed",
+            "In the garden"
+          ],
+          "answer": 2,
+          "explanation": "文中说 “Max sleeps next to my bed.”，选 C，答得真棒！"
+        },
+        {
+          "q": "What does Max eat every morning?",
+          "options": [
+            "Cake and milk",
+            "Bread and meat",
+            "Rice and fish",
+            "Noodles"
+          ],
+          "answer": 1,
+          "explanation": "文中说 “I give him bread and meat.”，选 B，找得又快又准！"
+        },
+        {
+          "q": "What is this passage about?",
+          "options": [
+            "A boy and his dog",
+            "A day in the park",
+            "Dogs like water",
+            "A black cat"
+          ],
+          "answer": 0,
+          "explanation": "全文讲的是小作者和他的狗 Max，选 A，你读懂了全文！"
+        },
+        {
+          "q": "In “He runs fast and catches balls”, the word “catches” means ___.",
+          "options": [
+            "eats up",
+            "looks for",
+            "gets with hands",
+            "runs after"
+          ],
+          "answer": 2,
+          "explanation": "catches 是“接住”的意思，Max 跑得快，能接住球，选 C，真厉害！"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "A Rainy Day",
+      "difficulty": 1,
+      "topic": "weather",
+      "wordCount": 79,
+      "text": "It is Saturday. The sky is grey. It starts to rain. Tom cannot play football outside.\n\nTom puts on his blue raincoat and red boots. He goes out with his little sister. Their dog Sam jumps with them. They jump in the water and laugh.\n\nThen Mum calls them home. She makes hot soup and bread for lunch. “Rainy days are fun!” says Tom. After lunch, Tom reads a book with his sister. The rain stops in the evening.",
+      "questions": [
+        {
+          "q": "What day is it in the story?",
+          "options": [
+            "Friday",
+            "Sunday",
+            "Saturday",
+            "Monday"
+          ],
+          "answer": 2,
+          "explanation": "第一句就说 “It is Saturday.”，选 C，观察力真强！"
+        },
+        {
+          "q": "What colour are Tom's boots?",
+          "options": [
+            "Red",
+            "Blue",
+            "Grey",
+            "Green"
+          ],
+          "answer": 0,
+          "explanation": "文中说 “his blue raincoat and red boots”，靴子是红色的，选 A，真棒！"
+        },
+        {
+          "q": "What does Mum make for lunch?",
+          "options": [
+            "Rice and fish",
+            "Noodles",
+            "Cakes",
+            "Soup and bread"
+          ],
+          "answer": 3,
+          "explanation": "文中说 “She makes hot soup and bread for lunch.”，选 D，答对啦！"
+        },
+        {
+          "q": "What is this story about?",
+          "options": [
+            "Tom's new raincoat",
+            "Mum cooks lunch",
+            "Tom has fun on a rainy day",
+            "Football in the rain"
+          ],
+          "answer": 2,
+          "explanation": "Tom 在下雨天也玩得很开心，选 C，你抓住了故事的中心！"
+        },
+        {
+          "q": "In “The sky is grey”, the word “grey” means ___.",
+          "options": [
+            "dark and cloudy",
+            "bright and blue",
+            "white and clean",
+            "red and warm"
+          ],
+          "answer": 0,
+          "explanation": "下雨天的天空是灰色的、阴阴的，选 A，猜得真准！"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Lily's School Day",
+      "difficulty": 2,
+      "topic": "school",
+      "wordCount": 78,
+      "text": "Lily is eight years old. She goes to Sunny School. Her school starts at nine o'clock.\n\nIn the morning, Lily has English and maths. Her English teacher is Miss White. She is kind and funny. Lily likes her very much.\n\nAt twelve, Lily eats lunch with her friends in the school hall. After lunch, they play games in the playground. Lily's favourite lesson is art, because she likes drawing pictures. At four o'clock, she goes home by bus.",
+      "questions": [
+        {
+          "q": "How old is Lily?",
+          "options": [
+            "Seven",
+            "Nine",
+            "Eight",
+            "Ten"
+          ],
+          "answer": 2,
+          "explanation": "第一句说 “Lily is eight years old.”，选 C，真棒！"
+        },
+        {
+          "q": "Who is Miss White?",
+          "options": [
+            "Lily's maths teacher",
+            "Lily's English teacher",
+            "Lily's mum",
+            "Lily's friend"
+          ],
+          "answer": 1,
+          "explanation": "文中说 “Her English teacher is Miss White.”，选 B，找得又快又准！"
+        },
+        {
+          "q": "What is Lily's favourite lesson?",
+          "options": [
+            "English",
+            "Maths",
+            "Music",
+            "Art"
+          ],
+          "answer": 3,
+          "explanation": "文中说 “Lily's favourite lesson is art”，选 D，你读得真仔细！"
+        },
+        {
+          "q": "What is this passage about?",
+          "options": [
+            "Lily's school day",
+            "Lily's family",
+            "Miss White's lessons",
+            "Drawing pictures"
+          ],
+          "answer": 0,
+          "explanation": "全文介绍了 Lily 一天在学校的生活，选 A，主旨把握得很好！"
+        },
+        {
+          "q": "In “She is kind and funny”, the word “kind” means ___.",
+          "options": [
+            "tall",
+            "nice and friendly",
+            "young",
+            "quiet"
+          ],
+          "answer": 1,
+          "explanation": "kind 是“和蔼的、友善的”，选 B，你已经会根据上下文猜词义了！"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Ben's Football Game",
+      "difficulty": 2,
+      "topic": "sports",
+      "wordCount": 78,
+      "text": "Ben's class has a football game today. The game is against Class Two. Ben plays very well.\n\nIn the first half, Class Two gets one goal. Ben is sad but he does not stop. He runs and runs.\n\nIn the second half, Ben kicks the ball hard. Goal! Then he kicks again. Goal! Ben's class wins two to one. All the children are happy. They sing and dance after the game. Ben is the hero of the day.",
+      "questions": [
+        {
+          "q": "Which class does Ben's class play against?",
+          "options": [
+            "Class One",
+            "Class Two",
+            "Class Three",
+            "Class Five"
+          ],
+          "answer": 1,
+          "explanation": "文中说 “The game is against Class Two.”，选 B，答得漂亮！"
+        },
+        {
+          "q": "Who gets the first goal?",
+          "options": [
+            "Ben",
+            "Ben's class",
+            "Class Two",
+            "No one"
+          ],
+          "answer": 2,
+          "explanation": "文中说 “In the first half, Class Two gets one goal.”，选 C，你真细心！"
+        },
+        {
+          "q": "What is the score at the end?",
+          "options": [
+            "One to one",
+            "Two to zero",
+            "Three to one",
+            "Two to one"
+          ],
+          "answer": 3,
+          "explanation": "文中说 “Ben's class wins two to one.”，选 D，找得真准！"
+        },
+        {
+          "q": "What is the story about?",
+          "options": [
+            "How to play football",
+            "Ben's class wins a game",
+            "Class Two is strong",
+            "Ben is sad"
+          ],
+          "answer": 1,
+          "explanation": "故事讲 Ben 的班级逆转赢得了比赛，选 B，你读懂了全文！"
+        },
+        {
+          "q": "In “Ben's class wins two to one”, the word “wins” means ___.",
+          "options": [
+            "loses the game",
+            "stops the game",
+            "gets the best score",
+            "plays first"
+          ],
+          "answer": 2,
+          "explanation": "wins 是“赢”的意思，得分最高就是赢，选 C，真聪明！"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Grandma's Garden",
+      "difficulty": 2,
+      "topic": "nature",
+      "wordCount": 83,
+      "text": "Grandma has a small garden behind her house. There are red flowers and green trees in it. Two birds sing in the trees every morning.\n\nOn Sundays, I help Grandma in the garden. I give water to the flowers. Grandma plants carrots and potatoes. She tells me stories about her old cat.\n\nIn autumn, we pick big apples from the tree. Grandma makes apple cakes. They are sweet and nice. Sometimes we sit under the tree and drink tea. I love Grandma's garden.",
+      "questions": [
+        {
+          "q": "Where is Grandma's garden?",
+          "options": [
+            "In the park",
+            "In front of the house",
+            "Behind the house",
+            "Next to the school"
+          ],
+          "answer": 2,
+          "explanation": "第一句说 “a small garden behind her house”，选 C，观察真仔细！"
+        },
+        {
+          "q": "What does the writer do in the garden on Sundays?",
+          "options": [
+            "Gives water to the flowers",
+            "Plants trees",
+            "Picks apples",
+            "Tells stories"
+          ],
+          "answer": 0,
+          "explanation": "文中说 “I give water to the flowers.”，选 A，答得真棒！"
+        },
+        {
+          "q": "When do they pick apples?",
+          "options": [
+            "In spring",
+            "In summer",
+            "In autumn",
+            "In winter"
+          ],
+          "answer": 2,
+          "explanation": "文中说 “In autumn, we pick big apples from the tree.”，选 C，找得很准！"
+        },
+        {
+          "q": "What is this passage about?",
+          "options": [
+            "Apple cakes",
+            "Two birds",
+            "An old cat",
+            "Grandma's garden"
+          ],
+          "answer": 3,
+          "explanation": "全文都在讲奶奶的花园和花园里的事情，选 D，主旨抓得稳稳的！"
+        },
+        {
+          "q": "In “Grandma plants carrots and potatoes”, the word “plants” means ___.",
+          "options": [
+            "puts in the ground to grow",
+            "picks from a tree",
+            "gives water to",
+            "cuts down"
+          ],
+          "answer": 0,
+          "explanation": "plants 在这里是“种植”的意思，选 A，你已经是猜词小高手了！"
+        }
+      ]
+    }
+  ]
+}

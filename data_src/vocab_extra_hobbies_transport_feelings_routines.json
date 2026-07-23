@@ -1,0 +1,724 @@
+{
+  "lists": [
+    {
+      "id": 101,
+      "title": "Hobbies 兴趣爱好",
+      "words": [
+        {
+          "word": "hobby",
+          "phonetic": "ˈhɒbi",
+          "pos": "n.",
+          "meaning": "爱好",
+          "example": "My hobby is drawing.",
+          "exampleCn": "我的爱好是画画。"
+        },
+        {
+          "word": "read",
+          "phonetic": "riːd",
+          "pos": "v.",
+          "meaning": "读；阅读",
+          "example": "I read a book at night.",
+          "exampleCn": "我晚上读一本书。"
+        },
+        {
+          "word": "draw",
+          "phonetic": "drɔː",
+          "pos": "v.",
+          "meaning": "画画",
+          "example": "She can draw a cat.",
+          "exampleCn": "她会画一只猫。"
+        },
+        {
+          "word": "paint",
+          "phonetic": "peɪnt",
+          "pos": "v.",
+          "meaning": "涂色；画",
+          "example": "We paint pictures at school.",
+          "exampleCn": "我们在学校画画。"
+        },
+        {
+          "word": "sing",
+          "phonetic": "sɪŋ",
+          "pos": "v.",
+          "meaning": "唱歌",
+          "example": "The girl sings very well.",
+          "exampleCn": "这个女孩唱歌很好听。"
+        },
+        {
+          "word": "dance",
+          "phonetic": "dɑːns",
+          "pos": "v.",
+          "meaning": "跳舞",
+          "example": "They dance in the hall.",
+          "exampleCn": "他们在大厅里跳舞。"
+        },
+        {
+          "word": "swim",
+          "phonetic": "swɪm",
+          "pos": "v.",
+          "meaning": "游泳",
+          "example": "I swim on Sundays.",
+          "exampleCn": "我星期天游泳。"
+        },
+        {
+          "word": "ride",
+          "phonetic": "raɪd",
+          "pos": "v.",
+          "meaning": "骑（车、马）",
+          "example": "He rides his bike to school.",
+          "exampleCn": "他骑自行车上学。"
+        },
+        {
+          "word": "play",
+          "phonetic": "pleɪ",
+          "pos": "v.",
+          "meaning": "玩；打（球）",
+          "example": "We play games after school.",
+          "exampleCn": "放学后我们玩游戏。"
+        },
+        {
+          "word": "watch",
+          "phonetic": "wɒtʃ",
+          "pos": "v.",
+          "meaning": "观看",
+          "example": "I watch TV with Dad.",
+          "exampleCn": "我和爸爸一起看电视。"
+        },
+        {
+          "word": "listen",
+          "phonetic": "ˈlɪsn",
+          "pos": "v.",
+          "meaning": "听",
+          "example": "Listen to the teacher, please.",
+          "exampleCn": "请听老师讲。"
+        },
+        {
+          "word": "collect",
+          "phonetic": "kəˈlekt",
+          "pos": "v.",
+          "meaning": "收集",
+          "example": "I collect toy cars.",
+          "exampleCn": "我收集玩具汽车。"
+        },
+        {
+          "word": "game",
+          "phonetic": "ɡeɪm",
+          "pos": "n.",
+          "meaning": "游戏；比赛",
+          "example": "This game is fun.",
+          "exampleCn": "这个游戏很有趣。"
+        },
+        {
+          "word": "puzzle",
+          "phonetic": "ˈpʌzl",
+          "pos": "n.",
+          "meaning": "拼图；谜",
+          "example": "I like this puzzle.",
+          "exampleCn": "我喜欢这个拼图。"
+        },
+        {
+          "word": "kite",
+          "phonetic": "kaɪt",
+          "pos": "n.",
+          "meaning": "风筝",
+          "example": "The kite is in the sky.",
+          "exampleCn": "风筝在天上。"
+        },
+        {
+          "word": "doll",
+          "phonetic": "dɒl",
+          "pos": "n.",
+          "meaning": "玩偶；洋娃娃",
+          "example": "The doll has blue eyes.",
+          "exampleCn": "这个玩偶有蓝色的眼睛。"
+        },
+        {
+          "word": "robot",
+          "phonetic": "ˈrəʊbɒt",
+          "pos": "n.",
+          "meaning": "机器人",
+          "example": "My robot can walk.",
+          "exampleCn": "我的机器人会走路。"
+        },
+        {
+          "word": "story",
+          "phonetic": "ˈstɔːri",
+          "pos": "n.",
+          "meaning": "故事",
+          "example": "Mum reads me a story.",
+          "exampleCn": "妈妈给我读故事。"
+        },
+        {
+          "word": "music",
+          "phonetic": "ˈmjuːzɪk",
+          "pos": "n.",
+          "meaning": "音乐",
+          "example": "I like this music.",
+          "exampleCn": "我喜欢这首音乐。"
+        },
+        {
+          "word": "photo",
+          "phonetic": "ˈfəʊtəʊ",
+          "pos": "n.",
+          "meaning": "照片",
+          "example": "This is a photo of me.",
+          "exampleCn": "这是我的一张照片。"
+        },
+        {
+          "word": "film",
+          "phonetic": "fɪlm",
+          "pos": "n.",
+          "meaning": "电影",
+          "example": "The film is about a dog.",
+          "exampleCn": "这部电影讲的是一只狗。"
+        },
+        {
+          "word": "drum",
+          "phonetic": "drʌm",
+          "pos": "n.",
+          "meaning": "鼓",
+          "example": "The boy plays the drum.",
+          "exampleCn": "这个男孩打鼓。"
+        },
+        {
+          "word": "guitar",
+          "phonetic": "ɡɪˈtɑː",
+          "pos": "n.",
+          "meaning": "吉他",
+          "example": "She plays the guitar.",
+          "exampleCn": "她弹吉他。"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "title": "Transport 交通出行",
+      "words": [
+        {
+          "word": "bus",
+          "phonetic": "bʌs",
+          "pos": "n.",
+          "meaning": "公共汽车",
+          "example": "The bus is yellow.",
+          "exampleCn": "公共汽车是黄色的。"
+        },
+        {
+          "word": "car",
+          "phonetic": "kɑː",
+          "pos": "n.",
+          "meaning": "小汽车",
+          "example": "Dad has a new car.",
+          "exampleCn": "爸爸有一辆新车。"
+        },
+        {
+          "word": "train",
+          "phonetic": "treɪn",
+          "pos": "n.",
+          "meaning": "火车",
+          "example": "The train is very long.",
+          "exampleCn": "火车很长。"
+        },
+        {
+          "word": "plane",
+          "phonetic": "pleɪn",
+          "pos": "n.",
+          "meaning": "飞机",
+          "example": "The plane flies high.",
+          "exampleCn": "飞机飞得很高。"
+        },
+        {
+          "word": "boat",
+          "phonetic": "bəʊt",
+          "pos": "n.",
+          "meaning": "小船",
+          "example": "The boat is on the lake.",
+          "exampleCn": "小船在湖上。"
+        },
+        {
+          "word": "ship",
+          "phonetic": "ʃɪp",
+          "pos": "n.",
+          "meaning": "大船；轮船",
+          "example": "The ship is very big.",
+          "exampleCn": "这艘轮船很大。"
+        },
+        {
+          "word": "bike",
+          "phonetic": "baɪk",
+          "pos": "n.",
+          "meaning": "自行车",
+          "example": "My bike is red.",
+          "exampleCn": "我的自行车是红色的。"
+        },
+        {
+          "word": "taxi",
+          "phonetic": "ˈtæksi",
+          "pos": "n.",
+          "meaning": "出租车",
+          "example": "We take a taxi home.",
+          "exampleCn": "我们坐出租车回家。"
+        },
+        {
+          "word": "lorry",
+          "phonetic": "ˈlɒri",
+          "pos": "n.",
+          "meaning": "卡车",
+          "example": "The lorry is big and slow.",
+          "exampleCn": "这辆卡车又大又慢。"
+        },
+        {
+          "word": "motorbike",
+          "phonetic": "ˈməʊtəbaɪk",
+          "pos": "n.",
+          "meaning": "摩托车",
+          "example": "The motorbike is fast.",
+          "exampleCn": "摩托车很快。"
+        },
+        {
+          "word": "station",
+          "phonetic": "ˈsteɪʃn",
+          "pos": "n.",
+          "meaning": "车站",
+          "example": "We wait at the station.",
+          "exampleCn": "我们在车站等车。"
+        },
+        {
+          "word": "airport",
+          "phonetic": "ˈeəpɔːt",
+          "pos": "n.",
+          "meaning": "机场",
+          "example": "The airport is far away.",
+          "exampleCn": "机场很远。"
+        },
+        {
+          "word": "ticket",
+          "phonetic": "ˈtɪkɪt",
+          "pos": "n.",
+          "meaning": "票",
+          "example": "I have two tickets.",
+          "exampleCn": "我有两张票。"
+        },
+        {
+          "word": "drive",
+          "phonetic": "draɪv",
+          "pos": "v.",
+          "meaning": "驾驶；开车",
+          "example": "Mum drives to work.",
+          "exampleCn": "妈妈开车上班。"
+        },
+        {
+          "word": "driver",
+          "phonetic": "ˈdraɪvə",
+          "pos": "n.",
+          "meaning": "司机",
+          "example": "The driver is kind.",
+          "exampleCn": "这位司机很友善。"
+        },
+        {
+          "word": "fly",
+          "phonetic": "flaɪ",
+          "pos": "v.",
+          "meaning": "飞；乘飞机",
+          "example": "Birds fly in the sky.",
+          "exampleCn": "鸟在天上飞。"
+        },
+        {
+          "word": "road",
+          "phonetic": "rəʊd",
+          "pos": "n.",
+          "meaning": "马路；道路",
+          "example": "Don't play on the road.",
+          "exampleCn": "不要在马路上玩。"
+        },
+        {
+          "word": "street",
+          "phonetic": "striːt",
+          "pos": "n.",
+          "meaning": "街道",
+          "example": "Our street is quiet.",
+          "exampleCn": "我们的街道很安静。"
+        },
+        {
+          "word": "wheel",
+          "phonetic": "wiːl",
+          "pos": "n.",
+          "meaning": "轮子",
+          "example": "A bike has two wheels.",
+          "exampleCn": "自行车有两个轮子。"
+        },
+        {
+          "word": "map",
+          "phonetic": "mæp",
+          "pos": "n.",
+          "meaning": "地图",
+          "example": "Look at the map, please.",
+          "exampleCn": "请看地图。"
+        },
+        {
+          "word": "trip",
+          "phonetic": "trɪp",
+          "pos": "n.",
+          "meaning": "短途旅行",
+          "example": "We have a school trip.",
+          "exampleCn": "我们有一次学校郊游。"
+        },
+        {
+          "word": "walk",
+          "phonetic": "wɔːk",
+          "pos": "v.",
+          "meaning": "走路；散步",
+          "example": "I walk to school.",
+          "exampleCn": "我走路去上学。"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "title": "Feelings 心情感受",
+      "words": [
+        {
+          "word": "happy",
+          "phonetic": "ˈhæpi",
+          "pos": "adj.",
+          "meaning": "开心的",
+          "example": "I am happy today.",
+          "exampleCn": "我今天很开心。"
+        },
+        {
+          "word": "sad",
+          "phonetic": "sæd",
+          "pos": "adj.",
+          "meaning": "难过的",
+          "example": "The boy is sad.",
+          "exampleCn": "这个男孩很难过。"
+        },
+        {
+          "word": "angry",
+          "phonetic": "ˈæŋɡri",
+          "pos": "adj.",
+          "meaning": "生气的",
+          "example": "Dad is angry with me.",
+          "exampleCn": "爸爸生我的气。"
+        },
+        {
+          "word": "tired",
+          "phonetic": "ˈtaɪəd",
+          "pos": "adj.",
+          "meaning": "累的",
+          "example": "I am tired after school.",
+          "exampleCn": "放学后我很累。"
+        },
+        {
+          "word": "hungry",
+          "phonetic": "ˈhʌŋɡri",
+          "pos": "adj.",
+          "meaning": "饿的",
+          "example": "The baby is hungry.",
+          "exampleCn": "宝宝饿了。"
+        },
+        {
+          "word": "thirsty",
+          "phonetic": "ˈθɜːsti",
+          "pos": "adj.",
+          "meaning": "渴的",
+          "example": "I am thirsty. Water, please.",
+          "exampleCn": "我渴了，请给我水。"
+        },
+        {
+          "word": "afraid",
+          "phonetic": "əˈfreɪd",
+          "pos": "adj.",
+          "meaning": "害怕的",
+          "example": "She is afraid of dogs.",
+          "exampleCn": "她怕狗。"
+        },
+        {
+          "word": "excited",
+          "phonetic": "ɪkˈsaɪtɪd",
+          "pos": "adj.",
+          "meaning": "兴奋的",
+          "example": "The kids are excited.",
+          "exampleCn": "孩子们很兴奋。"
+        },
+        {
+          "word": "bored",
+          "phonetic": "bɔːd",
+          "pos": "adj.",
+          "meaning": "无聊的",
+          "example": "I am bored at home.",
+          "exampleCn": "我在家很无聊。"
+        },
+        {
+          "word": "surprised",
+          "phonetic": "səˈpraɪzd",
+          "pos": "adj.",
+          "meaning": "惊讶的",
+          "example": "Mum is very surprised.",
+          "exampleCn": "妈妈非常惊讶。"
+        },
+        {
+          "word": "worried",
+          "phonetic": "ˈwʌrid",
+          "pos": "adj.",
+          "meaning": "担心的",
+          "example": "He is worried about the test.",
+          "exampleCn": "他担心这次考试。"
+        },
+        {
+          "word": "proud",
+          "phonetic": "praʊd",
+          "pos": "adj.",
+          "meaning": "自豪的",
+          "example": "I am proud of you.",
+          "exampleCn": "我为你感到骄傲。"
+        },
+        {
+          "word": "shy",
+          "phonetic": "ʃaɪ",
+          "pos": "adj.",
+          "meaning": "害羞的",
+          "example": "The little girl is shy.",
+          "exampleCn": "这个小女孩很害羞。"
+        },
+        {
+          "word": "ill",
+          "phonetic": "ɪl",
+          "pos": "adj.",
+          "meaning": "生病的",
+          "example": "Tom is ill today.",
+          "exampleCn": "汤姆今天生病了。"
+        },
+        {
+          "word": "fine",
+          "phonetic": "faɪn",
+          "pos": "adj.",
+          "meaning": "好的；健康的",
+          "example": "I am fine, thank you.",
+          "exampleCn": "我很好，谢谢。"
+        },
+        {
+          "word": "glad",
+          "phonetic": "ɡlæd",
+          "pos": "adj.",
+          "meaning": "高兴的",
+          "example": "I am glad to see you.",
+          "exampleCn": "见到你我很高兴。"
+        },
+        {
+          "word": "cry",
+          "phonetic": "kraɪ",
+          "pos": "v.",
+          "meaning": "哭",
+          "example": "The baby cries at night.",
+          "exampleCn": "宝宝晚上哭。"
+        },
+        {
+          "word": "laugh",
+          "phonetic": "lɑːf",
+          "pos": "v.",
+          "meaning": "大笑",
+          "example": "The film makes us laugh.",
+          "exampleCn": "这部电影让我们大笑。"
+        },
+        {
+          "word": "smile",
+          "phonetic": "smaɪl",
+          "pos": "v.",
+          "meaning": "微笑",
+          "example": "She smiles at me.",
+          "exampleCn": "她对我微笑。"
+        },
+        {
+          "word": "love",
+          "phonetic": "lʌv",
+          "pos": "v.",
+          "meaning": "爱；热爱",
+          "example": "I love my family.",
+          "exampleCn": "我爱我的家人。"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "title": "Daily Routines 日常作息",
+      "words": [
+        {
+          "word": "get up",
+          "phonetic": "ɡet ʌp",
+          "pos": "phr. v.",
+          "meaning": "起床",
+          "example": "I get up at seven.",
+          "exampleCn": "我七点起床。"
+        },
+        {
+          "word": "wake",
+          "phonetic": "weɪk",
+          "pos": "v.",
+          "meaning": "醒来",
+          "example": "I wake up early.",
+          "exampleCn": "我醒得很早。"
+        },
+        {
+          "word": "brush",
+          "phonetic": "brʌʃ",
+          "pos": "v.",
+          "meaning": "刷",
+          "example": "Brush your teeth, please.",
+          "exampleCn": "请刷牙。"
+        },
+        {
+          "word": "wash",
+          "phonetic": "wɒʃ",
+          "pos": "v.",
+          "meaning": "洗",
+          "example": "I wash my hands.",
+          "exampleCn": "我洗手。"
+        },
+        {
+          "word": "dress",
+          "phonetic": "dres",
+          "pos": "v.",
+          "meaning": "穿衣服",
+          "example": "I get dressed quickly.",
+          "exampleCn": "我很快穿好衣服。"
+        },
+        {
+          "word": "breakfast",
+          "phonetic": "ˈbrekfəst",
+          "pos": "n.",
+          "meaning": "早餐",
+          "example": "I have breakfast at home.",
+          "exampleCn": "我在家吃早餐。"
+        },
+        {
+          "word": "lunch",
+          "phonetic": "lʌntʃ",
+          "pos": "n.",
+          "meaning": "午餐",
+          "example": "We have lunch at school.",
+          "exampleCn": "我们在学校吃午餐。"
+        },
+        {
+          "word": "dinner",
+          "phonetic": "ˈdɪnə",
+          "pos": "n.",
+          "meaning": "晚餐",
+          "example": "Dinner is at six.",
+          "exampleCn": "晚餐在六点。"
+        },
+        {
+          "word": "homework",
+          "phonetic": "ˈhəʊmwɜːk",
+          "pos": "n.",
+          "meaning": "家庭作业",
+          "example": "I do my homework.",
+          "exampleCn": "我做家庭作业。"
+        },
+        {
+          "word": "bath",
+          "phonetic": "bɑːθ",
+          "pos": "n.",
+          "meaning": "洗澡",
+          "example": "I have a bath at night.",
+          "exampleCn": "我晚上洗澡。"
+        },
+        {
+          "word": "shower",
+          "phonetic": "ˈʃaʊə",
+          "pos": "n.",
+          "meaning": "淋浴",
+          "example": "Dad has a shower.",
+          "exampleCn": "爸爸冲淋浴。"
+        },
+        {
+          "word": "sleep",
+          "phonetic": "sliːp",
+          "pos": "v.",
+          "meaning": "睡觉",
+          "example": "I sleep for nine hours.",
+          "exampleCn": "我睡九个小时。"
+        },
+        {
+          "word": "bedtime",
+          "phonetic": "ˈbedtaɪm",
+          "pos": "n.",
+          "meaning": "睡觉时间",
+          "example": "Bedtime is nine o'clock.",
+          "exampleCn": "睡觉时间是九点。"
+        },
+        {
+          "word": "morning",
+          "phonetic": "ˈmɔːnɪŋ",
+          "pos": "n.",
+          "meaning": "早晨",
+          "example": "I run in the morning.",
+          "exampleCn": "我早上跑步。"
+        },
+        {
+          "word": "afternoon",
+          "phonetic": "ˌɑːftəˈnuːn",
+          "pos": "n.",
+          "meaning": "下午",
+          "example": "We play in the afternoon.",
+          "exampleCn": "我们下午玩耍。"
+        },
+        {
+          "word": "evening",
+          "phonetic": "ˈiːvnɪŋ",
+          "pos": "n.",
+          "meaning": "傍晚；晚上",
+          "example": "I read in the evening.",
+          "exampleCn": "我晚上读书。"
+        },
+        {
+          "word": "night",
+          "phonetic": "naɪt",
+          "pos": "n.",
+          "meaning": "夜晚",
+          "example": "The stars come out at night.",
+          "exampleCn": "星星在夜晚出来。"
+        },
+        {
+          "word": "early",
+          "phonetic": "ˈɜːli",
+          "pos": "adv.",
+          "meaning": "早",
+          "example": "The bus is early today.",
+          "exampleCn": "今天公共汽车来得很早。"
+        },
+        {
+          "word": "late",
+          "phonetic": "leɪt",
+          "pos": "adv.",
+          "meaning": "晚；迟",
+          "example": "Don't be late for school.",
+          "exampleCn": "上学不要迟到。"
+        },
+        {
+          "word": "clean",
+          "phonetic": "kliːn",
+          "pos": "v.",
+          "meaning": "打扫；使干净",
+          "example": "I clean my room.",
+          "exampleCn": "我打扫房间。"
+        },
+        {
+          "word": "help",
+          "phonetic": "help",
+          "pos": "v.",
+          "meaning": "帮助",
+          "example": "I help Mum cook.",
+          "exampleCn": "我帮妈妈做饭。"
+        },
+        {
+          "word": "tidy",
+          "phonetic": "ˈtaɪdi",
+          "pos": "v.",
+          "meaning": "整理",
+          "example": "Tidy your desk, please.",
+          "exampleCn": "请整理你的书桌。"
+        }
+      ]
+    }
+  ]
+}
