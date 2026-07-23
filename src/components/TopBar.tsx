@@ -1,7 +1,33 @@
+import { useEffect, useState } from "react";
 import { AGENTS, rankForXp } from "@/lib/game";
+import { onCloudState, type CloudState } from "@/lib/cloud";
 import { streakInfo } from "@/lib/storage";
 import type { SaveState } from "@/types";
 import { RankChip, XpBar } from "@/components/ValBits";
+
+const DOT: Record<CloudState, { color: string; title: string }> = {
+  idle: { color: "#5A6068", title: "未同步" },
+  syncing: { color: "#FFC24B", title: "同步中…" },
+  ok: { color: "#3DDB9A", title: "已同步到云端" },
+  error: { color: "#FF4655", title: "离线，进度仅保存在本机" },
+};
+
+/** 云同步状态小圆点（灰=未同步/黄=同步中/绿=已同步/红=离线失败） */
+function CloudDot() {
+  const [s, setS] = useState<CloudState>("idle");
+  useEffect(() => onCloudState(setS), []);
+  return (
+    <span
+      title={DOT[s].title}
+      aria-label={DOT[s].title}
+      className="inline-block h-2 w-2 shrink-0 rounded-full"
+      style={{
+        background: DOT[s].color,
+        boxShadow: s === "syncing" || s === "ok" ? `0 0 6px ${DOT[s].color}` : "none",
+      }}
+    />
+  );
+}
 
 export function TopBar({ save }: { save: SaveState }) {
   const rank = rankForXp(save.xp);
@@ -18,6 +44,7 @@ export function TopBar({ save }: { save: SaveState }) {
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
+            <CloudDot />
             <span className="val-title truncate text-xs text-val-text">{agent.codename}</span>
             <RankChip rank={rank} size="sm" />
           </div>

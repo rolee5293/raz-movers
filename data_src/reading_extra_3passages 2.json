@@ -1,0 +1,199 @@
+{
+  "passages": [
+    {
+      "id": 101,
+      "title": "A Rainy Day",
+      "difficulty": 2,
+      "topic": "weather",
+      "wordCount": 101,
+      "text": "It is Saturday morning. Tom looks out of the window. It is raining. \"Oh no!\" says Tom. \"I want to play football.\"\n\nTom's sister Lucy has an idea. \"Let's make a fort!\" she says. They take two chairs and a big blanket. They put the blanket over the chairs. Now they have a little house.\n\nTom and Lucy sit in the fort. They read books and eat cookies. They listen to the rain on the window.\n\nSoon the rain stops. The sun comes out. \"Now we can play outside!\" says Tom. But Lucy smiles. \"The fort was fun too,\" she says.",
+      "questions": [
+        {
+          "q": "What is the weather like on Saturday morning?",
+          "options": [
+            "Sunny",
+            "Rainy",
+            "Snowy",
+            "Windy"
+          ],
+          "answer": 1,
+          "explanation": "文章第一段说 \"It is raining\"，所以早上下雨了。你找得很准！"
+        },
+        {
+          "q": "What do Tom and Lucy use to make the fort?",
+          "options": [
+            "A big box",
+            "Chairs and a blanket",
+            "Books and bags",
+            "A bed"
+          ],
+          "answer": 1,
+          "explanation": "第二段说他们拿了 two chairs and a big blanket 来搭小堡垒。答对了吗？细节题要回到原文找答案哦！"
+        },
+        {
+          "q": "What do the children do in the fort?",
+          "options": [
+            "They watch TV.",
+            "They sleep.",
+            "They read books and eat cookies.",
+            "They play football."
+          ],
+          "answer": 2,
+          "explanation": "第三段写得很清楚：They read books and eat cookies。你的阅读真仔细！"
+        },
+        {
+          "q": "What is the story mainly about?",
+          "options": [
+            "Playing football outside",
+            "A fun day at home on a rainy day",
+            "Going to school",
+            "Buying a blanket"
+          ],
+          "answer": 1,
+          "explanation": "主旨题要想一想整篇故事：下雨天出不去，兄妹俩在家搭堡垒玩得很开心。选 B 最合适！"
+        },
+        {
+          "q": "The word \"fort\" in the story means ______.",
+          "options": [
+            "a little house you make",
+            "a kind of food",
+            "a ball game",
+            "a rainy day"
+          ],
+          "answer": 0,
+          "explanation": "文中说搭好 fort 后 \"Now they have a little house\"，所以 fort 就是自己搭的小房子。联系上下文猜词义，你学会了吗？"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "title": "My Dog Max",
+      "difficulty": 1,
+      "topic": "animals",
+      "wordCount": 104,
+      "text": "I have a dog. His name is Max. He is two years old. Max is brown and white. He has long ears and a short tail.\n\nMax likes to run in the park. He runs after balls and birds. He can jump very high. Every morning, I take Max for a walk before school.\n\nMax is a hungry dog. He eats two times a day. His favorite food is chicken. After dinner, Max sleeps next to my bed.\n\nMax is my best friend. When I am sad, he puts his head on my leg. Then I feel happy again. I love my dog Max.",
+      "questions": [
+        {
+          "q": "What color is Max?",
+          "options": [
+            "Black and white",
+            "Brown and white",
+            "All brown",
+            "All white"
+          ],
+          "answer": 1,
+          "explanation": "第一段告诉我们 Max is brown and white。眼睛真尖！"
+        },
+        {
+          "q": "When does the writer walk Max?",
+          "options": [
+            "After dinner",
+            "At night",
+            "Before school",
+            "After school"
+          ],
+          "answer": 2,
+          "explanation": "第二段最后一句说 Every morning, I take Max for a walk before school。抓住关键词 morning 就找到答案啦！"
+        },
+        {
+          "q": "What is Max's favorite food?",
+          "options": [
+            "Fish",
+            "Rice",
+            "Eggs",
+            "Chicken"
+          ],
+          "answer": 3,
+          "explanation": "第三段说 His favorite food is chicken。favorite 就是\"最喜欢的\"。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A trip to the park",
+            "The writer's dog Max",
+            "How to feed a dog",
+            "Dogs at school"
+          ],
+          "answer": 1,
+          "explanation": "整篇文章都在介绍作者的狗 Max：它的样子、爱好和生活。选 B，你理解得很棒！"
+        },
+        {
+          "q": "The word \"tail\" means ______.",
+          "options": [
+            "part of a dog's body",
+            "a kind of food",
+            "a dog's toy",
+            "a dog's bed"
+          ],
+          "answer": 0,
+          "explanation": "第一段说 Max 有 long ears and a short tail，ears（耳朵）是身体部位，tail（尾巴）也是。联系旁边的词就能猜出来！"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "title": "The School Trip",
+      "difficulty": 2,
+      "topic": "places",
+      "wordCount": 101,
+      "text": "On Friday, Class 3 goes on a school trip. They go to a farm. The children are very excited.\n\nAt the farm, they see many animals. There are cows, sheep, and horses. A farmer shows the children a baby goat. The goat is only two days old. It is white and very small.\n\nThe children help the farmer. They give water to the horses. They pick apples from the trees. The apples are red and sweet.\n\nAt four o'clock, the children go back to school. They are tired but happy. \"The farm is great!\" says Ben. \"I want to come back again.\"",
+      "questions": [
+        {
+          "q": "Where does Class 3 go on Friday?",
+          "options": [
+            "To a zoo",
+            "To a farm",
+            "To a park",
+            "To a shop"
+          ],
+          "answer": 1,
+          "explanation": "第一段说 They go to a farm。答案就在开头，很好找！"
+        },
+        {
+          "q": "How old is the baby goat?",
+          "options": [
+            "Two days old",
+            "Two weeks old",
+            "Two months old",
+            "Two years old"
+          ],
+          "answer": 0,
+          "explanation": "第二段说 The goat is only two days old。注意是 days（天），不是 weeks 或 years，你分清了吗？"
+        },
+        {
+          "q": "What do the children pick from the trees?",
+          "options": [
+            "Flowers",
+            "Apples",
+            "Eggs",
+            "Oranges"
+          ],
+          "answer": 1,
+          "explanation": "第三段说 They pick apples from the trees。答得漂亮！"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A farmer and his animals",
+            "A school trip to a farm",
+            "How to pick apples",
+            "A small baby goat"
+          ],
+          "answer": 1,
+          "explanation": "文章从出发写到回校，讲的是三班的一次农场郊游。A、C、D 都只是其中一部分，选 B 才完整。你会抓主旨了！"
+        },
+        {
+          "q": "The word \"excited\" in the passage means ______.",
+          "options": [
+            "feeling very happy about something",
+            "feeling very tired",
+            "feeling afraid",
+            "feeling hungry"
+          ],
+          "answer": 0,
+          "explanation": "孩子们要去郊游，当然是 excited——又开心又期待！从故事结尾 They are tired but happy 也能帮你确认这个好词。"
+        }
+      ]
+    }
+  ]
+}

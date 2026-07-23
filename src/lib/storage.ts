@@ -37,6 +37,8 @@ function defaultSave(): SaveState {
     stats: {
       masteredCount: 0,
       quizzesTaken: 0,
+      quizQuestions: 0,
+      quizCorrect: 0,
       perfectQuizzes: 0,
       readingsDone: 0,
       readingsPerfect: 0,
@@ -134,6 +136,7 @@ export function ensureDayRecord(save: SaveState, date: string, totalWords: numbe
     quizTask: { done: quizLocked, locked: quizLocked, score: 0, total: 0 },
     readingTask: { passageId: -1, done: false, correct: 0, total: 0 },
     bonusGiven: false,
+    xp: 0,
   };
   const next: SaveState = { ...save, daily: { ...save.daily, [date]: rec } };
   return { save: next, rec };

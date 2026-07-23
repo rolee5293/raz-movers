@@ -60,6 +60,7 @@ export interface ReadingTask {
 
 export interface DayRecord {
   date: string;
+  xp?: number; // 当日获得 XP（家长看板用）
   newTask: NewTask;
   reviewTask: ReviewTask;
   quizTask: QuizTask;
@@ -70,6 +71,8 @@ export interface DayRecord {
 export interface Stats {
   masteredCount: number;
   quizzesTaken: number;
+  quizQuestions: number; // 累计答题数
+  quizCorrect: number; // 累计答对数
   perfectQuizzes: number;
   readingsDone: number;
   readingsPerfect: number;

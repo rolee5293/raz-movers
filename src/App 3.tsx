@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Passage, SaveState, Word } from "@/types";
 import { loadReading, loadVocab } from "@/lib/data";
 import {
@@ -12,13 +12,6 @@ import {
   badgeHelpers,
 } from "@/lib/storage";
 import { applyRewards, type AgentDef, type BadgeDef, type RankDef } from "@/lib/game";
-import {
-  downloadSave,
-  lastCloudSync,
-  markAdoptedCloud,
-  scheduleUpload,
-  uploadNow,
-} from "@/lib/cloud";
 import { TopBar } from "@/components/TopBar";
 import { BottomNav, type TabId } from "@/components/BottomNav";
 import { RankUpOverlay, UnlockToasts } from "@/components/Celebrations";
@@ -28,14 +21,7 @@ import { QuizPage } from "@/pages/Quiz";
 import { ReadingPage } from "@/pages/Reading";
 import { ProfilePage } from "@/pages/Profile";
 
-/** 把任务 XP 记入当日记录（家长看板 14 天图用） */
-function addDayXp(save: SaveState, date: string, amount: number): SaveState {
-  const rec = save.daily[date];
-  if (!rec || amount <= 0) return save;
-  return { ...save, daily: { ...save.daily, [date]: { ...rec, xp: (rec.xp ?? 0) + amount } } };
-}
-
-/** 每日全任务完成奖励：+20 XP，计一次完美行动日 */
+/** 每日全任务完成奖励：+50 XP，计一次完美行动日 */
 function withDailyBonus(save: SaveState, date: string): { save: SaveState; bonusXp: number } {
   const rec = save.daily[date];
   if (!rec || rec.bonusGiven || !isDayAllDone(rec)) return { save, bonusXp: 0 };
@@ -45,7 +31,7 @@ function withDailyBonus(save: SaveState, date: string): { save: SaveState; bonus
       daily: { ...save.daily, [date]: { ...rec, bonusGiven: true } },
       stats: { ...save.stats, perfectDays: save.stats.perfectDays + 1 },
     },
-    bonusXp: 20,
+    bonusXp: 50,
   };
 }
 
@@ -60,43 +46,11 @@ export default function App() {
     agents: [],
   });
 
-  const saveRef = useRef(save);
-  saveRef.current = save;
-
-  // 本地保存 + 云端防抖上传（3s）；失败静默，不影响学习
-  useEffect(() => {
-    persist(save);
-    scheduleUpload(() => saveRef.current);
-  }, [save]);
+  useEffect(() => persist(save), [save]);
 
   useEffect(() => {
     loadVocab().then(setVocab).catch(console.error);
     loadReading().then(setPassages).catch(console.error);
-  }, []);
-
-  // 启动时云端恢复：云端 updated_at 比本地同步点新 → 采用云端（换设备/清缓存恢复）；
-  // 从未同步过的老存档用 XP 对比防止误覆盖本地进度
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const row = await downloadSave();
-      if (cancelled || !row) return;
-      const cloud = row.data as SaveState | null;
-      if (!cloud || cloud.version !== 1) return;
-      const syncPt = lastCloudSync();
-      const shouldAdopt = syncPt ? row.updated_at > syncPt : (cloud.xp ?? 0) > saveRef.current.xp;
-      if (!shouldAdopt) return;
-      setSave((prev) => ({
-        ...prev,
-        ...cloud,
-        stats: { ...prev.stats, ...(cloud.stats ?? {}) },
-      }));
-      markAdoptedCloud(row.updated_at);
-    })();
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 数据就绪后生成今日任务记录
@@ -111,7 +65,6 @@ export default function App() {
     if (fx.rankUp) setRankUp(fx.rankUp);
     if (fx.newBadges.length || fx.newAgents.length)
       setToasts((t) => ({ badges: [...t.badges, ...fx.newBadges], agents: [...t.agents, ...fx.newAgents] }));
-    void uploadNow(() => fx.save); // 任务完成立即上传（不等防抖）
   }, []);
 
   // 解锁提示 5 秒自动消失
@@ -150,9 +103,8 @@ export default function App() {
         [today]: { ...rec, newTask: { ...rec.newTask, done: true, known } },
       },
     };
-    const taskXp = known * 1 + 5;
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
-    commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
+    commit(withBonus, known * 2 + 10 + bonusXp);
   };
 
   const finishReviewTask = (results: GradeResult[]) => {
@@ -174,9 +126,8 @@ export default function App() {
         [today]: { ...rec, reviewTask: { ...rec.reviewTask, done: true, known } },
       },
     };
-    const taskXp = known * 1 + 5;
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
-    commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
+    commit(withBonus, known * 2 + 10 + bonusXp);
   };
 
   const finishQuiz = (score: number, total: number, bestCombo: number) => {
@@ -190,8 +141,6 @@ export default function App() {
         quizzesTaken: save.stats.quizzesTaken + 1,
         perfectQuizzes: save.stats.perfectQuizzes + (perfect ? 1 : 0),
         bestCombo: Math.max(save.stats.bestCombo, bestCombo),
-        quizQuestions: save.stats.quizQuestions + total,
-        quizCorrect: save.stats.quizCorrect + score,
       },
       daily: rec
         ? {
@@ -202,9 +151,8 @@ export default function App() {
           }
         : save.daily,
     };
-    const taskXp = score * 8 + (perfect ? 10 : 0);
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
-    commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
+    commit(withBonus, score * 10 + (perfect ? 50 : 0) + bonusXp);
   };
 
   const finishReading = (passageId: number, correct: number, total: number) => {
@@ -227,9 +175,8 @@ export default function App() {
           }
         : save.daily,
     };
-    const taskXp = correct * 5 + 10 + (perfect ? 5 : 0);
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
-    commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
+    commit(withBonus, correct * 10 + 30 + (perfect ? 30 : 0) + bonusXp);
   };
 
   const onLaunch = (kind: MissionKind) => {

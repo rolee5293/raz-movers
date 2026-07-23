@@ -1,0 +1,204 @@
+{
+  "passages": [
+    {
+      "id": 6,
+      "title": "A Picnic in the Park",
+      "difficulty": 1,
+      "topic": "food",
+      "wordCount": 82,
+      "text": "On Saturday, the sun is hot. Tom and his family go to the park. They take a big bag. In the bag, there are sandwiches, apples and orange juice. They sit under a tree. Tom's little sister, May, eats two sandwiches. Dad drinks some juice. Mum takes photos of the family.\n\nAfter lunch, Tom flies his kite. The kite goes up and up in the blue sky. May plays with her ball. Everyone is very happy. 'What a good day!' says Dad.",
+      "questions": [
+        {
+          "q": "Where do Tom and his family go?",
+          "options": ["To the zoo", "To the park", "To the shop", "To school"],
+          "answer": 1,
+          "explanation": "短文开头就告诉我们，Tom 一家周六去了公园，答对啦！"
+        },
+        {
+          "q": "What does May eat?",
+          "options": ["Two sandwiches", "An apple", "Some juice", "A cake"],
+          "answer": 0,
+          "explanation": "文中说 May 'eats two sandwiches'，细节记得很牢，真棒！"
+        },
+        {
+          "q": "Who takes photos of the family?",
+          "options": ["Dad", "Tom", "Mum", "May"],
+          "answer": 2,
+          "explanation": "是妈妈在拍照哦，'Mum takes photos of the family'，继续加油！"
+        },
+        {
+          "q": "What is the story about?",
+          "options": ["A family picnic", "Flying kites at school", "Cooking at home", "A rainy day"],
+          "answer": 0,
+          "explanation": "全文讲一家人在公园野餐的快乐时光，主旨抓得很准！"
+        },
+        {
+          "q": "What does 'under' mean in the story?",
+          "options": ["above", "below", "behind", "inside"],
+          "answer": 1,
+          "explanation": "'under' 表示'在……下面'，他们坐在树下面，你猜对了吗？"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Leo's New Hobby",
+      "difficulty": 2,
+      "topic": "hobbies",
+      "wordCount": 96,
+      "text": "Leo is nine years old. He has a new hobby: drawing. Every day after school, Leo sits at his desk and draws. He draws his cat, his house and his family.\n\nOn Monday, Leo shows his picture to his teacher. The teacher says, 'Wow! That is great!' She puts the picture on the classroom wall. All the children look at it. Leo is very happy.\n\nNow he wants to draw every day. 'One day, I want to be an artist,' Leo says to his mum. Mum smiles and gives him a new box of coloured pencils.",
+      "questions": [
+        {
+          "q": "What is Leo's new hobby?",
+          "options": ["Drawing", "Swimming", "Singing", "Reading"],
+          "answer": 0,
+          "explanation": "Leo 的新爱好是画画，文中一开始就告诉我们啦！"
+        },
+        {
+          "q": "When does Leo draw?",
+          "options": ["Before school", "After school", "At night", "In the morning"],
+          "answer": 1,
+          "explanation": "'Every day after school'，Leo 每天放学后画画，找得很准！"
+        },
+        {
+          "q": "What does Mum give Leo?",
+          "options": ["A cat", "A new desk", "Coloured pencils", "A picture book"],
+          "answer": 2,
+          "explanation": "妈妈给了 Leo 一盒彩色铅笔，你读得真细心！"
+        },
+        {
+          "q": "What is the story about?",
+          "options": ["Leo's new hobby", "Leo's school day", "A funny cat", "Leo's teacher"],
+          "answer": 0,
+          "explanation": "整篇故事都在讲 Leo 的新爱好，主旨题答得漂亮！"
+        },
+        {
+          "q": "What is an 'artist'?",
+          "options": ["A person who draws pictures", "A person who sings songs", "A person who cooks food", "A person who drives a bus"],
+          "answer": 0,
+          "explanation": "artist 是画画的人——画家。Leo 长大后也想当画家呢！"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "The Train Ride",
+      "difficulty": 2,
+      "topic": "transport",
+      "wordCount": 100,
+      "text": "Amy and her dad go to the city by train. They walk to the station in the morning. Amy buys two tickets with her dad. The train is long and blue. Amy sits next to the window. She sees green trees, small houses and a big river. 'Look, Dad! Cows!' Amy says.\n\nThe train goes fast, but Amy is not scared. She likes the train. After one hour, they arrive in the city. Amy's uncle is waiting at the station. 'Hello, Amy!' he says. 'Do you like the train ride?' 'Yes! It is great!' Amy says with a big smile.",
+      "questions": [
+        {
+          "q": "How do Amy and her dad go to the city?",
+          "options": ["By bus", "By train", "By car", "By bike"],
+          "answer": 1,
+          "explanation": "他们坐火车去城里，'by train' 找到了吗？真棒！"
+        },
+        {
+          "q": "What colour is the train?",
+          "options": ["Green", "Red", "Blue", "Yellow"],
+          "answer": 2,
+          "explanation": "文中说火车 'long and blue'，是蓝色的哦，答对啦！"
+        },
+        {
+          "q": "Who is waiting at the station?",
+          "options": ["Amy's mum", "Amy's uncle", "Amy's grandpa", "Amy's teacher"],
+          "answer": 1,
+          "explanation": "到站后是叔叔在等 Amy，细节题满分！"
+        },
+        {
+          "q": "What is the story about?",
+          "options": ["Amy's train trip", "Buying tickets", "A blue train", "Animals on a farm"],
+          "answer": 0,
+          "explanation": "故事主要讲 Amy 的火车之旅，你的理解力很棒！"
+        },
+        {
+          "q": "What does 'arrive' mean?",
+          "options": ["get to a place", "go away", "sit down", "look out"],
+          "answer": 0,
+          "explanation": "'arrive' 表示'到达'，一小时后他们到达了城里，猜对了吗？"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Mum's Birthday",
+      "difficulty": 2,
+      "topic": "family",
+      "wordCount": 97,
+      "text": "Today is Mum's birthday, but it is a secret. Jack and his dad want to give her a surprise. In the morning, Mum is at work. Jack and Dad make a big chocolate cake. Dad cooks, and Jack puts yellow flowers on the table. Then Jack makes a birthday card. He draws a red heart on it.\n\nAt six o'clock, Mum comes home. 'Surprise!' Jack and Dad shout. Mum looks at the cake, the flowers and the card. Her eyes are wet, but she is smiling. 'I am so happy,' she says. 'This is my best birthday!'",
+      "questions": [
+        {
+          "q": "Whose birthday is it?",
+          "options": ["Jack's", "Dad's", "Mum's", "Grandma's"],
+          "answer": 2,
+          "explanation": "今天是妈妈的生日，Jack 和爸爸在准备惊喜，你读得很认真！"
+        },
+        {
+          "q": "What does Jack put on the table?",
+          "options": ["A cake", "Yellow flowers", "A card", "Some juice"],
+          "answer": 1,
+          "explanation": "Jack 把黄色的花放在桌上，细节观察力很强！"
+        },
+        {
+          "q": "What does Jack draw on the card?",
+          "options": ["A red heart", "A yellow flower", "A big cake", "A sun"],
+          "answer": 0,
+          "explanation": "卡片上画了一颗红色的心，答对啦！"
+        },
+        {
+          "q": "What is the story about?",
+          "options": ["A birthday surprise", "Making cakes at school", "Mum's work", "A party with friends"],
+          "answer": 0,
+          "explanation": "全文讲给妈妈的生日惊喜，主旨把握得很好！"
+        },
+        {
+          "q": "What is a 'surprise'?",
+          "options": ["Something you know", "Something you don't expect", "Something you eat", "Something you wear"],
+          "answer": 1,
+          "explanation": "surprise 是'意想不到的事'，妈妈收到惊喜时开心极了！"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "My Busy Saturday",
+      "difficulty": 3,
+      "topic": "daily routines",
+      "wordCount": 95,
+      "text": "Sam is always busy on Saturdays. He gets up at eight o'clock and makes his bed. After breakfast, he helps his mum clean the house. Sam washes the cups and plates.\n\nAt ten o'clock, Sam has a swimming lesson. He can swim very well now. In the afternoon, Sam visits his grandpa. They play chess together. Grandpa always wins, but Sam doesn't mind.\n\nIn the evening, Sam does his homework and reads a book. He goes to bed at nine o'clock. 'Saturday is my favourite day,' Sam says. 'I can do lots of fun things!'",
+      "questions": [
+        {
+          "q": "What time does Sam get up on Saturday?",
+          "options": ["At seven", "At eight", "At nine", "At ten"],
+          "answer": 1,
+          "explanation": "Sam 八点起床，'gets up at eight o'clock'，找到啦！"
+        },
+        {
+          "q": "What does Sam do after breakfast?",
+          "options": ["Goes swimming", "Visits Grandpa", "Helps clean the house", "Reads a book"],
+          "answer": 2,
+          "explanation": "早饭后 Sam 帮妈妈打扫房子，你真细心！"
+        },
+        {
+          "q": "Who always wins at chess?",
+          "options": ["Sam", "Grandpa", "Mum", "Dad"],
+          "answer": 1,
+          "explanation": "'Grandpa always wins'，爷爷下棋总是赢，答得漂亮！"
+        },
+        {
+          "q": "What does the story tell us about?",
+          "options": ["Sam's busy Saturday", "Sam's swimming lesson", "Playing chess", "Sam's grandpa"],
+          "answer": 0,
+          "explanation": "故事讲 Sam 忙碌的周六一整天，主旨题又答对啦！"
+        },
+        {
+          "q": "What does 'favourite' mean?",
+          "options": ["the one you like best", "the one you don't like", "something new", "something old"],
+          "answer": 0,
+          "explanation": "'favourite' 是'最喜欢的'，周六是 Sam 最喜欢的一天！"
+        }
+      ]
+    }
+  ]
+}

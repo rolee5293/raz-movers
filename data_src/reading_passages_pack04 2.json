@@ -1,0 +1,979 @@
+{
+  "passages": [
+    {
+      "id": 26,
+      "title": "The Mountain That Smokes",
+      "difficulty": 2,
+      "topic": "volcano",
+      "text": "Jack read a book about volcanoes. A volcano is a mountain that can open and throw out hot rocks. Deep under the ground, the rock is very hot and soft. It is called magma. When magma comes out, it is called lava.\n\nSome volcanoes sleep for many years. But one day they can wake up. Smoke and ash go high into the sky. Lava runs down the mountain like a slow red river.\n\nPeople who live near a volcano must be careful. Scientists watch the volcano every day, so they can tell people when it is not safe. Jack thinks their job is very cool. He wants to see a volcano one day, but only from far away!",
+      "questions": [
+        {
+          "q": "What is magma?",
+          "options": [
+            "Hot, soft rock under the ground",
+            "Smoke from a fire",
+            "A kind of mountain",
+            "Cold river water"
+          ],
+          "answer": 0,
+          "explanation": "答对啦！文中第一段说地下的岩石又热又软，叫做 magma，所以选 A。"
+        },
+        {
+          "q": "What is lava?",
+          "options": [
+            "Sleeping rock",
+            "Magma that comes out",
+            "A red river boat",
+            "A science book"
+          ],
+          "answer": 1,
+          "explanation": "真棒！第一段最后一句告诉我们，magma 流出来以后就叫 lava。"
+        },
+        {
+          "q": "What do scientists do every day?",
+          "options": [
+            "They climb the volcano",
+            "They sleep near the volcano",
+            "They watch the volcano",
+            "They throw rocks"
+          ],
+          "answer": 2,
+          "explanation": "没错！第三段说科学家每天观察火山，这样才能提醒大家注意安全。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "Jack's science book",
+            "How to climb a mountain",
+            "Volcanoes and the people who watch them",
+            "A trip to a volcano"
+          ],
+          "answer": 2,
+          "explanation": "很好！全文讲了火山是什么，以及科学家如何守护大家的安全，C 概括得最全面。"
+        },
+        {
+          "q": "What does \"ash\" mean in the story?",
+          "options": [
+            "Very small grey pieces after something burns",
+            "Hot red rock",
+            "A kind of smoke cloud",
+            "Rain from the sky"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！ash 是火山喷出的细小灰粒，火山爆发时会和烟一起冲上天空。"
+        }
+      ],
+      "wordCount": 118
+    },
+    {
+      "id": 27,
+      "title": "Life on the Space Station",
+      "difficulty": 2,
+      "topic": "space station",
+      "text": "Tim watched a video about the space station. It is like a big house in space. Astronauts live and work there for many months.\n\nThere is no gravity in space, so things float! Astronauts sleep in bags on the wall because they do not want to float away. They eat food from bags and drink water through a straw.\n\nEvery day, the astronauts exercise for two hours. This keeps their bodies strong. They also do science tests and fix the station.\n\nFrom the window, they can see the Earth. It looks like a blue and white ball. Tim thinks it must be the best view in the world. \"I want to go there too,\" he says. But first, he must study hard and eat his vegetables!",
+      "questions": [
+        {
+          "q": "Why do astronauts sleep in bags on the wall?",
+          "options": [
+            "Because the beds are broken",
+            "So they do not float away",
+            "Because bags are warm",
+            "So they can see the Earth"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！太空没有重力，宇航员睡在墙上的睡袋里才不会飘走。"
+        },
+        {
+          "q": "How long do astronauts exercise every day?",
+          "options": [
+            "One hour",
+            "Half an hour",
+            "Three hours",
+            "Two hours"
+          ],
+          "answer": 3,
+          "explanation": "真棒！第三段第一句写得很清楚：每天锻炼两小时，让身体保持强壮。"
+        },
+        {
+          "q": "What does the Earth look like from the window?",
+          "options": [
+            "A blue and white ball",
+            "A green star",
+            "A big red ball",
+            "A white moon"
+          ],
+          "answer": 0,
+          "explanation": "没错！从空间站窗口看，地球像一个蓝白相间的球。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to fly a rocket",
+            "Life on the space station",
+            "Tim's favourite video",
+            "The food astronauts eat"
+          ],
+          "answer": 1,
+          "explanation": "很好！整篇文章介绍了宇航员在空间站里睡觉、吃饭、锻炼和工作的日常生活。"
+        },
+        {
+          "q": "What does \"float\" mean in the story?",
+          "options": [
+            "To stay in the air without falling",
+            "To run very fast",
+            "To swim in the sea",
+            "To sleep deeply"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！float 是“漂浮”的意思，太空里东西会飘在空中，真神奇！"
+        }
+      ],
+      "wordCount": 126
+    },
+    {
+      "id": 28,
+      "title": "Sam Makes a Game",
+      "difficulty": 2,
+      "topic": "programming",
+      "text": "Sam is nine years old. He loves computers. Last month, his teacher showed the class how to code. Coding means telling the computer what to do.\n\nAt first, it was hard. Sam typed and typed, but the little cat on the screen did not move. He felt sad, but he did not stop. He read his code again and found a small mistake. He fixed it, and the cat jumped!\n\nNow Sam is making his own game. In the game, a dog runs after a ball. If the dog gets the ball, you win ten points. His friends all want to play it.\n\n\"Coding is like magic,\" Sam says. \"But the magic words are words that I write!\"",
+      "questions": [
+        {
+          "q": "Who showed Sam how to code?",
+          "options": [
+            "His father",
+            "His friend",
+            "His teacher",
+            "A doctor"
+          ],
+          "answer": 2,
+          "explanation": "答对啦！第一段说上个月老师教全班同学编程。"
+        },
+        {
+          "q": "What happened after Sam fixed the small mistake?",
+          "options": [
+            "The cat jumped",
+            "The computer broke",
+            "The game ended",
+            "The dog ran away"
+          ],
+          "answer": 0,
+          "explanation": "真棒！他改掉小错误之后，屏幕上的小猫跳起来了。"
+        },
+        {
+          "q": "How many points do you win in Sam's game?",
+          "options": [
+            "Five",
+            "One hundred",
+            "Two",
+            "Ten"
+          ],
+          "answer": 3,
+          "explanation": "没错！小狗追到球就能得十分，他的朋友们都想玩这个游戏。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A boy who learns to code and makes a game",
+            "How to fix a computer",
+            "A cat on a screen",
+            "Sam's teacher"
+          ],
+          "answer": 0,
+          "explanation": "很好！全文讲 Sam 学习编程、克服困难，最后做出自己的小游戏。"
+        },
+        {
+          "q": "In this story, what does \"coding\" mean?",
+          "options": [
+            "Drawing on a screen",
+            "Playing computer games",
+            "Telling the computer what to do",
+            "Writing a letter"
+          ],
+          "answer": 2,
+          "explanation": "猜对了！文中第一段就解释了：编程就是告诉电脑该做什么。"
+        }
+      ],
+      "wordCount": 118
+    },
+    {
+      "id": 29,
+      "title": "The Last Shot",
+      "difficulty": 2,
+      "topic": "basketball",
+      "text": "The school basketball game was almost over. Ben's team was losing by one point. There were only ten seconds left.\n\nBen's friend Tom ran fast and passed the ball to him. Ben was near the line, but two tall boys stood in front of him. He could not run to the basket.\n\nSo Ben jumped and threw the ball. It flew high in the air. Everyone was quiet. The ball hit the board and dropped into the basket!\n\n\"Three points!\" shouted the coach. Ben's team won the game. The boys jumped and laughed together.\n\nAfter the game, the other team's captain came over. \"Great shot,\" he said, and shook Ben's hand. Ben smiled. Winning was fun, but playing fair and making friends felt even better.",
+      "questions": [
+        {
+          "q": "How many seconds were left in the game?",
+          "options": [
+            "Twenty",
+            "Ten",
+            "Five",
+            "One"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第一段最后说比赛只剩十秒钟，真紧张！"
+        },
+        {
+          "q": "Why couldn't Ben run to the basket?",
+          "options": [
+            "He was too tired",
+            "His shoes were broken",
+            "Two tall boys stood in front of him",
+            "The coach said no"
+          ],
+          "answer": 2,
+          "explanation": "没错！两个高个子男孩挡在前面，所以他只能原地投篮。"
+        },
+        {
+          "q": "What did the other team's captain do after the game?",
+          "options": [
+            "He shouted at Ben",
+            "He shook Ben's hand",
+            "He took the ball",
+            "He went home"
+          ],
+          "answer": 1,
+          "explanation": "真棒！对方队长走过来和 Ben 握手，还夸他投得好。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to play basketball",
+            "Ben wins a game with a great shot and plays fair",
+            "The school's basketball team",
+            "A lost game"
+          ],
+          "answer": 1,
+          "explanation": "很好！故事讲 Ben 最后一投反败为胜，还展现了友谊和公平竞赛精神。"
+        },
+        {
+          "q": "What does \"passed the ball\" mean?",
+          "options": [
+            "Threw or gave the ball to a teammate",
+            "Kicked the ball out",
+            "Hid the ball",
+            "Lost the ball"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！pass 就是传球，Tom 快速把球传给了 Ben。"
+        }
+      ],
+      "wordCount": 125
+    },
+    {
+      "id": 30,
+      "title": "Saving the Sea Turtles",
+      "difficulty": 2,
+      "topic": "wildlife protection",
+      "text": "Amy and her dad walked on the beach early in the morning. Suddenly, Amy saw something move in the sand. It was a baby sea turtle!\n\n\"The turtles come out of their eggs at night,\" Dad said. \"Then they walk to the sea. But this one is late.\"\n\nAmy wanted to pick it up, but Dad said no. \"It must walk by itself. This makes its legs strong.\" So they watched the little turtle walk slowly over the sand. At last, a small wave took it into the sea.\n\nMany sea turtles are in danger because people leave plastic bags on the beach. Turtles think the bags are food. Amy and her dad picked up all the plastic they could find. \"We helped more than one turtle today,\" Dad said with a smile.",
+      "questions": [
+        {
+          "q": "When do baby turtles come out of their eggs?",
+          "options": [
+            "In the morning",
+            "At night",
+            "At lunchtime",
+            "In the afternoon"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！爸爸说小海龟晚上破壳，然后爬向大海。"
+        },
+        {
+          "q": "Why couldn't Amy pick up the turtle?",
+          "options": [
+            "The turtle was too fast",
+            "Dad was too tired",
+            "Walking makes its legs strong",
+            "The turtle was sleeping"
+          ],
+          "answer": 2,
+          "explanation": "没错！小海龟必须自己爬，这样腿才能变得强壮。"
+        },
+        {
+          "q": "Why are plastic bags dangerous for turtles?",
+          "options": [
+            "Turtles think the bags are food",
+            "Turtles are afraid of white",
+            "The bags are too heavy",
+            "Turtles like to play with them"
+          ],
+          "answer": 0,
+          "explanation": "真棒！海龟会把塑料袋当成食物，所以很危险，我们要带走垃圾。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A day at the beach",
+            "How Amy and her dad helped sea turtles",
+            "Sea animals in danger",
+            "A turtle race"
+          ],
+          "answer": 1,
+          "explanation": "很好！Amy 和爸爸既守护了小海龟入海，又捡走了塑料垃圾。"
+        },
+        {
+          "q": "What does \"in danger\" mean?",
+          "options": [
+            "Not safe; may be hurt",
+            "Very happy",
+            "Fast and strong",
+            "Far from home"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！in danger 表示“处于危险中”，所以我们要保护海龟。"
+        }
+      ],
+      "wordCount": 133
+    },
+    {
+      "id": 31,
+      "title": "The Map in the Attic",
+      "difficulty": 2,
+      "topic": "pirate treasure",
+      "text": "On a rainy Saturday, Leo went up to the attic with his grandpa. In an old box, he found a yellow map. It had a big red X on it!\n\n\"That is your old treasure map,\" Grandpa laughed. \"You made it when you were five.\"\n\n\"I don't remember,\" said Leo. \"Let's follow it!\" The map showed the garden. Leo took a small shovel, and they walked to the apple tree. Ten steps left, the map said. Leo started to dig.\n\nSoon, the shovel hit something hard. It was an old cookie tin! Inside, there were three marbles, a toy car, and a photo of little Leo with his grandpa.\n\n\"This is a real treasure,\" Grandpa said softly. Leo smiled. He put new things in the tin and hid it again, for the next pirate to find.",
+      "questions": [
+        {
+          "q": "Where did Leo find the map?",
+          "options": [
+            "Under his bed",
+            "In an old box in the attic",
+            "In the garden",
+            "At school"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第一段说 Leo 和爷爷在阁楼的旧箱子里发现了地图。"
+        },
+        {
+          "q": "Who made the map?",
+          "options": [
+            "Grandpa",
+            "A pirate",
+            "Leo's mum",
+            "Leo, when he was five"
+          ],
+          "answer": 3,
+          "explanation": "真棒！爷爷笑着说，这是 Leo 五岁时自己画的藏宝图。"
+        },
+        {
+          "q": "What was inside the cookie tin?",
+          "options": [
+            "Gold coins",
+            "Marbles, a toy car, and a photo",
+            "Old books",
+            "Cookies"
+          ],
+          "answer": 1,
+          "explanation": "没错！铁盒里有三颗弹珠、一辆玩具车和一张小 Leo 与爷爷的合影。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A pirate who lost his gold",
+            "How to draw a map",
+            "Leo follows his old treasure map with Grandpa",
+            "A rainy Saturday"
+          ],
+          "answer": 2,
+          "explanation": "很好！Leo 和爷爷按童年的藏宝图寻宝，找到了最珍贵的回忆。"
+        },
+        {
+          "q": "Grandpa said it \"softly\". What does that mean?",
+          "options": [
+            "In a quiet, gentle voice",
+            "Very loudly",
+            "Very quickly",
+            "In a sad song"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！softly 是“轻声地”，爷爷的话里满是温柔的爱。"
+        }
+      ],
+      "wordCount": 136
+    },
+    {
+      "id": 32,
+      "title": "The Boy Who Fixed Things",
+      "difficulty": 2,
+      "topic": "inventor",
+      "text": "Marcus loves machines. When his toy breaks, he does not cry. He opens it and looks inside.\n\nHis hero is a young inventor he saw on TV. The girl on TV made a small machine that cleans water. \"Anyone can be an inventor,\" she said. \"You just need to see a problem and try to fix it.\"\n\nLast week, Marcus saw a problem at home. His little brother could not reach the light switch. So Marcus found a short stick and some string. He tied the string to the switch. Now his brother can pull the string and turn the light on!\n\nMum called it a great invention. Marcus felt proud. He has a notebook now. On the first page, he wrote: \"Ideas that can help people.\" He writes one idea in it every night before bed.",
+      "questions": [
+        {
+          "q": "What does Marcus do when a toy breaks?",
+          "options": [
+            "He cries",
+            "He buys a new one",
+            "He opens it and looks inside",
+            "He throws it away"
+          ],
+          "answer": 2,
+          "explanation": "答对啦！第一段说玩具坏了他不哭，而是拆开看看里面。"
+        },
+        {
+          "q": "What did the girl on TV invent?",
+          "options": [
+            "A machine that cleans water",
+            "A flying car",
+            "A new toy",
+            "A robot dog"
+          ],
+          "answer": 0,
+          "explanation": "真棒！电视里的女孩发明了一台能净化水的小机器。"
+        },
+        {
+          "q": "How does Marcus's brother turn on the light now?",
+          "options": [
+            "He climbs a chair",
+            "He asks Mum",
+            "He uses the stick",
+            "He pulls a string"
+          ],
+          "answer": 3,
+          "explanation": "没错！Marcus 把绳子系在开关上，弟弟一拉绳灯就亮了。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A famous inventor on TV",
+            "Marcus fixes problems like a young inventor",
+            "How to make a notebook",
+            "A broken light"
+          ],
+          "answer": 1,
+          "explanation": "很好！Marcus 受小发明家鼓舞，动手解决生活中的问题。"
+        },
+        {
+          "q": "Marcus felt \"proud\". What does that mean?",
+          "options": [
+            "Happy about something he did well",
+            "Very sleepy",
+            "Afraid of machines",
+            "Hungry for dinner"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！proud 是“自豪的”，帮助别人会让人心里特别自豪。"
+        }
+      ],
+      "wordCount": 137
+    },
+    {
+      "id": 33,
+      "title": "Our First Night in a Tent",
+      "difficulty": 2,
+      "topic": "camping",
+      "text": "Dan and his family went camping by a lake. Dad showed Dan how to put up the tent. It was not easy, but they worked together, and soon the tent stood tall.\n\nAt night, Mum cooked soup on a small fire. The soup tasted better than any soup at home. \"Food is always good outside,\" Dad said.\n\nAfter dinner, they looked at the stars. There were thousands of them! In the city, Dan could only see a few stars because of the lights. Here, the sky was full.\n\nWhen it was time to sleep, Dan heard a strange sound. \"What is that?\" he whispered. \"Just a frog,\" Mum said. Dan laughed. He felt a little scared, but also very happy.\n\nThe next morning, Dan woke up to the sound of birds. \"Can we camp here again next year?\" he asked. Everyone said yes.",
+      "questions": [
+        {
+          "q": "Where did Dan's family go camping?",
+          "options": [
+            "In the mountains",
+            "By a lake",
+            "In the forest",
+            "On the beach"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第一句就说他们全家去湖边露营。"
+        },
+        {
+          "q": "Why could Dan only see a few stars in the city?",
+          "options": [
+            "Because of the clouds",
+            "Because of the lights",
+            "Because he was sleepy",
+            "Because of the moon"
+          ],
+          "answer": 1,
+          "explanation": "没错！城市灯光太亮，所以只能看到几颗星星；湖边却有成千上万颗。"
+        },
+        {
+          "q": "What made the strange sound at night?",
+          "options": [
+            "A bird",
+            "The wind",
+            "A frog",
+            "A fish"
+          ],
+          "answer": 2,
+          "explanation": "真棒！妈妈说那只是一只青蛙，Dan 听完就笑了。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to put up a tent",
+            "Cooking soup outside",
+            "Dan's happy first night of camping",
+            "Animals at the lake"
+          ],
+          "answer": 2,
+          "explanation": "很好！全文记录了 Dan 第一次露营过夜的新鲜与快乐。"
+        },
+        {
+          "q": "What does \"whispered\" mean?",
+          "options": [
+            "Spoke very quietly",
+            "Sang a song",
+            "Shouted loudly",
+            "Cried sadly"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！whisper 是“小声说”，夜里怕吵到别人就会这样说话。"
+        }
+      ],
+      "wordCount": 143
+    },
+    {
+      "id": 34,
+      "title": "The Night of the Storm",
+      "difficulty": 3,
+      "topic": "bad weather",
+      "text": "The sky turned black in the middle of the afternoon. Mia was doing her homework when the first drop of rain hit the window. Then the wind began to howl like a hungry wolf.\n\n\"Close all the windows!\" called Mum. Mia ran from room to room. Outside, the trees were dancing wildly. A branch broke off the big tree and fell onto the road with a crash.\n\nSuddenly, all the lights went out. The house was dark. Mia felt scared, but Dad lit some candles, and the family sat together in the living room. They played a word game and told funny stories while the storm shouted outside.\n\nLater, the rain stopped. The wind grew tired and went to sleep. Mia looked out of the window and saw a hundred stars in a clean, dark sky.\n\nThe next morning, the street was a mess of leaves and branches. Neighbors came out with brooms, and everyone worked together. By lunchtime, the road was clean again.\n\n\"Storms can break things,\" Dad said, \"but they also bring people together.\" Mia thought about this as she helped sweep the last leaves into a bag.",
+      "questions": [
+        {
+          "q": "What was Mia doing when the rain started?",
+          "options": [
+            "Watching TV",
+            "Playing outside",
+            "Doing her homework",
+            "Sleeping"
+          ],
+          "answer": 2,
+          "explanation": "答对啦！第一段说第一滴雨打在窗户上时，Mia 正在写作业。"
+        },
+        {
+          "q": "What did the family do when the lights went out?",
+          "options": [
+            "They went to bed",
+            "They played a word game and told stories",
+            "They ran outside",
+            "They called the police"
+          ],
+          "answer": 1,
+          "explanation": "真棒！停电后爸爸点上蜡烛，全家人一起玩文字游戏、讲有趣的故事。"
+        },
+        {
+          "q": "Who cleaned the street the next morning?",
+          "options": [
+            "Only Mia's family",
+            "The police",
+            "Neighbors working together",
+            "No one"
+          ],
+          "answer": 2,
+          "explanation": "没错！邻居们都拿着扫帚出来，大家一起干活，午饭前马路就干净了。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How storms start",
+            "A storm brings trouble but also brings people together",
+            "Mia's homework",
+            "Why candles are useful"
+          ],
+          "answer": 1,
+          "explanation": "很好！暴风雨虽然带来麻烦，却让一家人更亲密、让邻居们更团结。"
+        },
+        {
+          "q": "The wind began to \"howl\". What does that mean?",
+          "options": [
+            "To make a long, loud sound",
+            "To blow softly",
+            "To bring rain",
+            "To stop suddenly"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！howl 形容风发出又长又响的呼啸声，像狼嚎一样。"
+        }
+      ],
+      "wordCount": 190
+    },
+    {
+      "id": 35,
+      "title": "One Hello Away",
+      "difficulty": 3,
+      "topic": "friendship",
+      "text": "When Omar first came to our school, he did not talk to anyone. He sat alone at lunch and looked at his food. Some kids thought he was unfriendly, but I thought he was just shy.\n\nOne day, I saw him drawing a robot in his notebook. It was the best robot I had ever seen. \"That's amazing!\" I said before I could stop myself. Omar looked up, surprised. Then he smiled for the first time.\n\n\"You like robots?\" he asked quietly. \"Love them,\" I said, and I sat down next to him.\n\nThat was the start of everything. We found out that we both liked the same books and the same games. Omar taught me how to draw robots, and I taught him how to play football. He wasn't very good at first, but he laughed so much that we both fell over on the grass.\n\nNow Omar is not quiet any more. He talks and jokes all day long. Last week, he told me, \"I was scared to come to this school. But then you spoke to me, and everything was okay.\"\n\nI learned something important: a new friend might be just one hello away. All you have to do is say it.",
+      "questions": [
+        {
+          "q": "What was Omar drawing in his notebook?",
+          "options": [
+            "A football",
+            "A cat",
+            "A robot",
+            "A house"
+          ],
+          "answer": 2,
+          "explanation": "答对啦！第二段说 Omar 在笔记本上画了一个最棒的机器人。"
+        },
+        {
+          "q": "What did the writer teach Omar?",
+          "options": [
+            "How to draw robots",
+            "How to play football",
+            "How to swim",
+            "How to read"
+          ],
+          "answer": 1,
+          "explanation": "真棒！Omar 教“我”画机器人，“我”教 Omar 踢足球。"
+        },
+        {
+          "q": "How did Omar feel about the new school at first?",
+          "options": [
+            "Excited",
+            "Angry",
+            "Bored",
+            "Scared"
+          ],
+          "answer": 3,
+          "explanation": "没错！最后 Omar 说，他刚来学校时心里很害怕。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to draw robots",
+            "A new boy at school",
+            "How one hello started a friendship",
+            "Football practice"
+          ],
+          "answer": 2,
+          "explanation": "很好！一句主动的问候开启了两个人的友谊，这就是全文的主题。"
+        },
+        {
+          "q": "What does \"shy\" mean in the story?",
+          "options": [
+            "Quiet and nervous with people",
+            "Rude and loud",
+            "Very funny",
+            "Good at sports"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！shy 是“害羞的”，Omar 不是不友好，只是有点害羞。"
+        }
+      ],
+      "wordCount": 205
+    },
+    {
+      "id": 36,
+      "title": "Sports Day Surprise",
+      "difficulty": 3,
+      "topic": "sports day",
+      "text": "Our school has a Sports Day every June. Last year, I won nothing, so this year I trained hard. Every morning before school, I ran around the park.\n\nOn the big day, the sun was hot and the field was full of parents. My first race was the hundred meters. When the teacher shouted \"Go!\", I ran faster than I had ever run. I came second! It was not first place, but it was my first medal ever — silver and beautiful.\n\nThen came the three-legged race. My partner was my best friend Ali. We tied our legs together and practiced all week. \"Left, right, left, right!\" we shouted as we ran. Halfway to the finish line, the team next to us fell down like a bag of potatoes. We almost fell too, but Ali grabbed my arm and we stayed up. We won!\n\nThe funniest race was the egg-and-spoon race. You carry an egg on a spoon without dropping it. My egg fell three times, but it never broke. The crowd laughed and cheered.\n\nAt the end, our class won the big cup. We all lifted it together, and the head teacher took our photo. It hangs in the school hall now, and every time I walk past it, I remember that training hard really works.",
+      "questions": [
+        {
+          "q": "How did the writer train for Sports Day?",
+          "options": [
+            "He swam every day",
+            "He ran around the park every morning",
+            "He played ball games",
+            "He watched races on TV"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第一段说他每天上学前绕着公园跑步训练。"
+        },
+        {
+          "q": "What did the writer win in the hundred meters?",
+          "options": [
+            "First place",
+            "Nothing",
+            "A gold cup",
+            "Second place and a silver medal"
+          ],
+          "answer": 3,
+          "explanation": "真棒！他跑出第二名，得到了人生中第一枚奖牌——银牌。"
+        },
+        {
+          "q": "How many times did the egg fall in the egg-and-spoon race?",
+          "options": [
+            "Once",
+            "Twice",
+            "Three times",
+            "Never"
+          ],
+          "answer": 2,
+          "explanation": "没错！鸡蛋掉了三次，居然一次都没破，观众都笑了。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to win a medal",
+            "Training hard helps the writer do well on Sports Day",
+            "The rules of Sports Day",
+            "The writer's friend Ali"
+          ],
+          "answer": 1,
+          "explanation": "很好！通过刻苦训练，作者在运动会收获奖牌和奖杯，证明了努力有用。"
+        },
+        {
+          "q": "What does \"grabbed\" mean in the story?",
+          "options": [
+            "Took hold of quickly",
+            "Pushed away",
+            "Looked at",
+            "Shouted at"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！grab 是“一把抓住”，Ali 抓住他的胳膊，两人才没摔倒。"
+        }
+      ],
+      "wordCount": 217
+    },
+    {
+      "id": 37,
+      "title": "The Egg That Wouldn't Sink",
+      "difficulty": 3,
+      "topic": "science experiment",
+      "text": "Our science teacher, Mr. Chen, likes to surprise us. Last Friday, he walked into class with two glasses of water, two eggs, and a big box of salt.\n\n\"Can an egg float?\" he asked. We all shouted \"No!\"\n\nHe dropped an egg into the first glass. It sank to the bottom, just as we thought. Then he poured five spoons of salt into the second glass and stirred until the water turned cloudy. He dropped in the second egg, and something amazing happened: the egg floated!\n\n\"How?!\" we shouted together.\n\nMr. Chen smiled. \"Salt water is heavier than plain water. Heavy water can hold up more things. That is why it is easier to float in the sea than in a swimming pool.\"\n\nHe let us try it ourselves in small groups. My group added too little salt at first, and our egg just hung in the middle of the glass like a tiny moon. We laughed and added more salt until it popped to the top.\n\nAt the end of the lesson, Mr. Chen said, \"Science is not about knowing answers. It is about asking questions and testing them.\" I wrote that sentence in my notebook, because I want to be a scientist one day.",
+      "questions": [
+        {
+          "q": "What did Mr. Chen bring to class?",
+          "options": [
+            "Two eggs and some sugar",
+            "Two glasses of water, two eggs, and salt",
+            "A fish tank",
+            "Books about the sea"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第一段说陈老师带了两杯水、两个鸡蛋和一大盒盐。"
+        },
+        {
+          "q": "What happened to the egg in the first glass?",
+          "options": [
+            "It floated",
+            "It broke",
+            "It sank to the bottom",
+            "It turned white"
+          ],
+          "answer": 2,
+          "explanation": "没错！第一杯是清水，鸡蛋像大家想的那样沉到了杯底。"
+        },
+        {
+          "q": "Why is it easier to float in the sea than in a swimming pool?",
+          "options": [
+            "The sea is warmer",
+            "Sea water is heavier",
+            "The sea is deeper",
+            "Pools are too small"
+          ],
+          "answer": 1,
+          "explanation": "真棒！盐水比普通水重，能托起更多东西，海水里就更容易浮起来。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A fun science lesson about floating",
+            "How to cook eggs",
+            "Why the sea is salty",
+            "Mr. Chen's favourite eggs"
+          ],
+          "answer": 0,
+          "explanation": "很好！这节科学课用鸡蛋实验告诉大家浮力的道理，还点燃了科学梦。"
+        },
+        {
+          "q": "What does \"stirred\" mean in the story?",
+          "options": [
+            "Mixed with a spoon",
+            "Poured out",
+            "Drank slowly",
+            "Broke into pieces"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！stir 是“搅拌”，陈老师把盐搅进水里直到水变浑浊。"
+        }
+      ],
+      "wordCount": 206
+    },
+    {
+      "id": 38,
+      "title": "How the City Moves",
+      "difficulty": 3,
+      "topic": "city transport",
+      "text": "My uncle works for the city. His job is to help people move around. Last week, he took me to see the control room for the underground trains.\n\nThe room was full of big screens. Every train in the city was a small green dot on the screens. \"At eight o'clock in the morning, more than a million people are moving,\" my uncle said. \"Our job is to keep them safe and on time.\"\n\nHe explained that different people need different ways to travel. Old people and families with babies like buses, because buses stop near their homes. Students often ride bikes. People who work far away take the underground because it is fast and never gets stuck in traffic.\n\n\"The best city is one where you don't need a car at all,\" he said. \"Fewer cars mean cleaner air and quieter streets.\"\n\nOn the way home, we took a bus, a train, and then we walked. I looked at all the people around me. Some were reading, some were sleeping, and one man was doing a crossword. I never noticed before how many stories ride the train every morning.\n\nWhen I grow up, I might do my uncle's job. I would like to design a train that runs on sunshine. He says it might be possible one day.",
+      "questions": [
+        {
+          "q": "What were the trains on the screens in the control room?",
+          "options": [
+            "Red lines",
+            "Photos of trains",
+            "Small green dots",
+            "Moving stars"
+          ],
+          "answer": 2,
+          "explanation": "答对啦！第二段说大屏幕上的每列火车都是一个小小的绿点。"
+        },
+        {
+          "q": "Why do old people and families with babies like buses?",
+          "options": [
+            "Buses are cheap",
+            "Buses stop near their homes",
+            "Buses are fast",
+            "Buses have screens"
+          ],
+          "answer": 1,
+          "explanation": "没错！公交车站离家近，所以老人和有宝宝的家庭喜欢坐公交。"
+        },
+        {
+          "q": "What kind of train does the writer want to design?",
+          "options": [
+            "A very fast train",
+            "A train that runs on sunshine",
+            "A train under the sea",
+            "A train with no driver"
+          ],
+          "answer": 1,
+          "explanation": "真棒！结尾说他想设计一列靠阳光奔跑的火车，多有想象力！"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "The writer's uncle",
+            "How to ride a bike",
+            "How a city keeps people moving",
+            "A trip on the underground"
+          ],
+          "answer": 2,
+          "explanation": "很好！文章介绍了城市里不同交通工具如何让人们安全、准时地出行。"
+        },
+        {
+          "q": "The underground never gets \"stuck\" in traffic. What does \"stuck\" mean?",
+          "options": [
+            "Stopped and unable to move",
+            "Very dirty",
+            "Lost in the city",
+            "Broken down"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！stuck 是“卡住”，地铁不会被堵在路上，所以非常快。"
+        }
+      ],
+      "wordCount": 219
+    },
+    {
+      "id": 39,
+      "title": "The Night of a Thousand Lanterns",
+      "difficulty": 3,
+      "topic": "festival",
+      "text": "On the fifteenth day of the new year, my city celebrates the Lantern Festival. The whole city turns into a sea of lights — my favourite night of the year.\n\nIn the morning, my family makes sweet rice balls together. My job is to roll them into small white moons. Grandma says the round shape means the family stays together. When we boil them, they float to the top of the pot, and that means they are ready to eat.\n\nIn the evening, we go to the park. Thousands of lanterns hang from the trees. Some look like fish, some like dragons, and one huge one looks like a rocket. Every lantern has a riddle written on it. If you guess the riddle, you win a small prize. I guessed three riddles this year and won a little paper tiger.\n\nThe best part is the dragon dance. Twenty men hold up a long golden dragon, and it dances through the crowd to the sound of drums. The dragon's eyes light up, and little children scream with joy.\n\nWhen we walk home, the sky is full of fireworks. I hold my grandma's hand and make a quiet wish. I can't tell you what it is, because then it won't come true. But it is about next year's festival.",
+      "questions": [
+        {
+          "q": "What does the family make in the morning?",
+          "options": [
+            "Dumplings",
+            "Sweet rice balls",
+            "Lanterns",
+            "Moon cakes"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！早上全家一起做甜甜的汤圆，作者负责把它们搓成白色小圆球。"
+        },
+        {
+          "q": "What is written on every lantern?",
+          "options": [
+            "A name",
+            "A picture",
+            "A riddle",
+            "A song"
+          ],
+          "answer": 2,
+          "explanation": "没错！每盏灯笼上都写着一个谜语，猜中了还能赢得小奖品。"
+        },
+        {
+          "q": "What prize did the writer win this year?",
+          "options": [
+            "A little paper tiger",
+            "A golden dragon",
+            "A red lantern",
+            "A bag of sweets"
+          ],
+          "answer": 0,
+          "explanation": "真棒！他今年猜中了三个谜语，赢得了一只小纸老虎。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "How to make lanterns",
+            "The history of the new year",
+            "A family's happy Lantern Festival",
+            "A dragon dance show"
+          ],
+          "answer": 2,
+          "explanation": "很好！文章记录了做汤圆、赏花灯、看舞龙的一整天节日快乐时光。"
+        },
+        {
+          "q": "What does \"huge\" mean in the story?",
+          "options": [
+            "Very big",
+            "Very old",
+            "Very bright",
+            "Very heavy"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！huge 是“巨大的”，那盏火箭灯笼一定特别壮观。"
+        }
+      ],
+      "wordCount": 217
+    },
+    {
+      "id": 40,
+      "title": "A Doctor for Animals",
+      "difficulty": 3,
+      "topic": "dream job",
+      "text": "Ask my classmates what they want to be, and you will hear many answers. Tom wants to be a football star. Lily wants to be a doctor. I want to be an animal doctor — a vet.\n\nThe idea started two years ago, when our cat Momo got sick. She would not eat, and she slept all day. We took her to a small animal hospital near our home. The vet there was a kind woman with calm hands. She listened to Momo's heart, gave her some medicine, and told us not to worry. Three days later, Momo was jumping on the sofa again.\n\nThat night, I told my mum, \"I want to do that job.\" She said, \"Then you must work hard at science, and you must be patient, because animals cannot tell you where it hurts.\"\n\nSo now I practice. I read books about animals and watch videos about how vets work. Last month, I even helped my neighbor feed her rabbit during her holiday.\n\nI know the road is long and I will need many years of school. But when I imagine my future, I see a small clinic with my name on the door, and a line of happy dogs, cats, and even a parrot. They cannot say thank you, but I will understand them anyway.",
+      "questions": [
+        {
+          "q": "What was wrong with Momo the cat?",
+          "options": [
+            "She lost her way home",
+            "She would not eat and slept all day",
+            "She broke her leg",
+            "She was afraid of the vet"
+          ],
+          "answer": 1,
+          "explanation": "答对啦！第二段说 Momo 不肯吃东西，整天睡觉，可把大家急坏了。"
+        },
+        {
+          "q": "What did Mum say the writer must be, besides good at science?",
+          "options": [
+            "Patient",
+            "Strong",
+            "Fast",
+            "Quiet"
+          ],
+          "answer": 0,
+          "explanation": "没错！妈妈说还要有耐心，因为动物说不出自己哪里疼。"
+        },
+        {
+          "q": "How did the writer practice last month?",
+          "options": [
+            "He watched TV all day",
+            "He helped feed a neighbor's rabbit",
+            "He bought a parrot",
+            "He visited a zoo"
+          ],
+          "answer": 1,
+          "explanation": "真棒！邻居度假时，他帮忙喂养了她家的兔子，积累照顾动物的经验。"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "A sick cat named Momo",
+            "Different jobs for children",
+            "Why the writer wants to be a vet",
+            "How vets give medicine"
+          ],
+          "answer": 2,
+          "explanation": "很好！Momo 康复的经历让作者立志当兽医，并一直在为梦想努力。"
+        },
+        {
+          "q": "What is a \"clinic\"?",
+          "options": [
+            "A small hospital or doctor's place",
+            "A pet shop",
+            "A school for animals",
+            "A kind of medicine"
+          ],
+          "answer": 0,
+          "explanation": "猜对了！clinic 是“小诊所”，作者梦想未来开一家自己的动物诊所。"
+        }
+      ],
+      "wordCount": 220
+    }
+  ]
+}
