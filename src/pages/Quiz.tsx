@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { SaveState, Word } from "@/types";
 import { generateQuiz, todayStr, type QuizItem } from "@/lib/storage";
-import { speakWord } from "@/lib/speech";
+import { speakWord, unlockAudio, prefetchPron } from "@/lib/speech";
 import { SectionHeader, SpeakerButton, ValButton } from "@/components/ValBits";
 import { PhonicsHint } from "@/components/PhonicsHint";
 import { cn } from "@/lib/utils";
@@ -33,7 +33,10 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
   const locked = learnedPool.length < 4;
 
   const start = () => {
-    setQuiz(generateQuiz(learnedPool));
+    unlockAudio(); // 在真实点击的同步栈里解锁音频，听音题才能自动出声
+    const q = generateQuiz(learnedPool);
+    q.filter((it) => it.type === "listen").forEach((it) => prefetchPron(it.word.word));
+    setQuiz(q);
     setPhase("playing");
     setIdx(0);
     setPicked(null);
