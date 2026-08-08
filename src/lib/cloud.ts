@@ -16,6 +16,9 @@ export const CLOUD_APP_ID = "raz";
 const LS_LAST_SYNC = `${CLOUD_APP_ID}-last-cloud-sync`;
 const TABLE = `${SUPA_URL}/rest/v1/progress`;
 
+/** 启动下载超时：网络不通时也要尽快放行本地流程与上传 */
+const DOWNLOAD_TIMEOUT_MS = 6000;
+
 const HEADERS = {
   apikey: ANON_KEY,
   Authorization: `Bearer ${ANON_KEY}`,
@@ -50,9 +53,14 @@ export function lastCloudSync(): string | null {
   }
 }
 
-function markSynced() {
+/**
+ * 记录同步点。务必优先存服务端回传的 updated_at：
+ * 下载时是拿 row.updated_at 与这里比大小，两边必须是同一个时钟，
+ * 否则设备时钟稍有偏差就会永久判错、再也不采纳云端存档。
+ */
+function markSynced(serverStamp?: string | null) {
   try {
-    localStorage.setItem(LS_LAST_SYNC, new Date().toISOString());
+    localStorage.setItem(LS_LAST_SYNC, serverStamp ?? new Date().toISOString());
   } catch {
     /* ignore */
   }
@@ -62,8 +70,31 @@ function markSynced() {
 
 let timer: ReturnType<typeof setTimeout> | null = null;
 
+/**
+ * 启动时的首次下载是否已结束。
+ * 未结束前禁止防抖上传：否则本地旧存档会先于下载完成把云端覆盖掉，
+ * 随后下载又把刚被覆盖的数据取回来，云端进度就此丢失。
+ */
+let initialSyncSettled = false;
+let pendingGetSave: (() => object) | null = null;
+
+/** 首次下载结束（成功或失败都要调用），放行被压住的上传 */
+export function markInitialSyncSettled() {
+  if (initialSyncSettled) return;
+  initialSyncSettled = true;
+  if (pendingGetSave) {
+    const getSave = pendingGetSave;
+    pendingGetSave = null;
+    scheduleUpload(getSave);
+  }
+}
+
 /** 存档变化后调用：3 秒防抖上传 */
 export function scheduleUpload(getSave: () => object) {
+  if (!initialSyncSettled) {
+    pendingGetSave = getSave; // 压住，等首次下载有结果再传
+    return;
+  }
   if (timer) clearTimeout(timer);
   timer = setTimeout(() => void uploadNow(getSave), 3000);
 }
@@ -81,12 +112,27 @@ export async function uploadNow(getSave: () => object): Promise<void> {
       headers: {
         ...HEADERS,
         "Content-Type": "application/json",
-        Prefer: "resolution=merge-duplicates",
+        // return=representation：拿回服务端写入后的 updated_at 当同步点
+        Prefer: "resolution=merge-duplicates,return=representation",
       },
-      body: JSON.stringify({ app: CLOUD_APP_ID, data: getSave() }),
+      // 必须显式带上 updated_at：该列的 DEFAULT now() 只在 INSERT 时生效，
+      // upsert 命中冲突走的是 UPDATE，不带这个字段时间戳会永远停在首次写入那一刻，
+      // 结果就是家长端误报"已超过 N 天未同步"，且换设备后永远拉不回云端存档。
+      body: JSON.stringify({
+        app: CLOUD_APP_ID,
+        data: getSave(),
+        updated_at: new Date().toISOString(),
+      }),
     });
     if (!res.ok) throw new Error(`upsert ${res.status}`);
-    markSynced();
+    let serverStamp: string | null = null;
+    try {
+      const rows = (await res.json()) as Array<{ updated_at?: string }>;
+      serverStamp = rows?.[0]?.updated_at ?? null;
+    } catch {
+      /* 服务端未回传内容时退回本地时间 */
+    }
+    markSynced(serverStamp);
     setState("ok");
   } catch {
     setState("error"); // 静默失败，本地 localStorage 仍是主存储
@@ -103,9 +149,12 @@ export interface CloudRow {
 /** 启动时调用。返回云端行（无则 null），失败也返回 null（静默回退） */
 export async function downloadSave(): Promise<CloudRow | null> {
   setState("syncing");
+  const ctrl = new AbortController();
+  const timeout = setTimeout(() => ctrl.abort(), DOWNLOAD_TIMEOUT_MS);
   try {
     const res = await fetch(`${TABLE}?app=eq.${CLOUD_APP_ID}&select=data,updated_at`, {
       headers: HEADERS,
+      signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`fetch ${res.status}`);
     const rows = (await res.json()) as CloudRow[];
@@ -114,6 +163,8 @@ export async function downloadSave(): Promise<CloudRow | null> {
   } catch {
     setState("error");
     return null;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

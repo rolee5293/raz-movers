@@ -16,6 +16,7 @@ import {
   downloadSave,
   lastCloudSync,
   markAdoptedCloud,
+  markInitialSyncSettled,
   scheduleUpload,
   uploadNow,
 } from "@/lib/cloud";
@@ -79,19 +80,24 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const row = await downloadSave();
-      if (cancelled || !row) return;
-      const cloud = row.data as SaveState | null;
-      if (!cloud || cloud.version !== 1) return;
-      const syncPt = lastCloudSync();
-      const shouldAdopt = syncPt ? row.updated_at > syncPt : (cloud.xp ?? 0) > saveRef.current.xp;
-      if (!shouldAdopt) return;
-      setSave((prev) => ({
-        ...prev,
-        ...cloud,
-        stats: { ...prev.stats, ...(cloud.stats ?? {}) },
-      }));
-      markAdoptedCloud(row.updated_at);
+      try {
+        const row = await downloadSave();
+        if (cancelled || !row) return;
+        const cloud = row.data as SaveState | null;
+        if (!cloud || cloud.version !== 1) return;
+        const syncPt = lastCloudSync();
+        const shouldAdopt = syncPt ? row.updated_at > syncPt : (cloud.xp ?? 0) > saveRef.current.xp;
+        if (!shouldAdopt) return;
+        setSave((prev) => ({
+          ...prev,
+          ...cloud,
+          stats: { ...prev.stats, ...(cloud.stats ?? {}) },
+        }));
+        markAdoptedCloud(row.updated_at);
+      } finally {
+        // 无论成功失败都要放行上传，否则存档永远传不上去
+        markInitialSyncSettled();
+      }
     })();
     return () => {
       cancelled = true;
