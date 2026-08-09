@@ -182,10 +182,20 @@ export function StudyPage({ save, vocab, onFinishNew, onFinishReview, onExit }: 
         }}
       >
         <div className={cn("flip-inner min-h-[340px] sm:min-h-[380px]", flipped && "flipped")}>
-          {/* 正面 */}
-          <button
+          {/* 正面 —— 用 div + role 而非 button：卡片内含喇叭按钮，
+              button 套 button 是无效 HTML，浏览器对内层按钮的点击行为不确定，
+              可访问性树上内层按钮的名称还会被并进外层，导致点喇叭实际点到了卡片 */}
+          <div
+            role="button"
+            tabIndex={0}
             onClick={() => (!isNew ? setFlipped(true) : setShowCn(!showCn))}
-            className="flip-face clip-card block w-full border border-val-line bg-val-panel bg-stripes p-6 text-left"
+            onKeyDown={(e) => {
+              if (e.key !== "Enter" && e.key !== " ") return;
+              e.preventDefault();
+              if (!isNew) setFlipped(true);
+              else setShowCn(!showCn);
+            }}
+            className="flip-face clip-card block w-full cursor-pointer border border-val-line bg-val-panel bg-stripes p-6 text-left"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
@@ -225,7 +235,7 @@ export function StudyPage({ save, vocab, onFinishNew, onFinishReview, onExit }: 
                 <p className="mt-1 text-[10px] text-val-dim/60">（也可以左右滑动评分）</p>
               </div>
             )}
-          </button>
+          </div>
 
           {/* 背面（复习模式翻面后） */}
           <div className="flip-back clip-card flex w-full flex-col border border-val-teal/50 bg-val-panel p-6">
