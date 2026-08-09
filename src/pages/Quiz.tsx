@@ -27,6 +27,7 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
   const [score, setScore] = useState(0);
   const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
   const [missed, setMissed] = useState<Word[]>([]);
+  const [audioDead, setAudioDead] = useState(false);
   const finishedRef = useRef(false);
 
   const current: QuizItem | undefined = quiz[idx];
@@ -49,10 +50,15 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
     finishedRef.current = false;
   };
 
-  // 听音题自动播放（真人录音优先）
+  // 听音题自动播放（真人录音优先）；完全放不出声时要让孩子知道，
+  // 否则这道题既听不到又不知道为什么，只能瞎猜
   useEffect(() => {
     if (phase === "playing" && current?.type === "listen") {
-      const t = setTimeout(() => void speakWord(current.word.word), 350);
+      setAudioDead(false);
+      const t = setTimeout(
+        () => void speakWord(current.word.word, (p) => setAudioDead(p === "unavailable")),
+        350
+      );
       return () => clearTimeout(t);
     }
   }, [phase, idx, current]);
@@ -270,7 +276,16 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
         {current.type === "listen" && (
           <div className="py-3">
             <SpeakerButton text={w.word} size="lg" className="mx-auto" />
-            <p className="mt-3 text-sm text-val-dim">📻 听无线电录音，选出你听到的单词</p>
+            {audioDead ? (
+              <div className="mt-3">
+                <p className="text-sm text-val-gold">🔇 这台设备暂时发不出声音</p>
+                <p className="mt-1 text-xs text-val-dim">
+                  本题的单词是 <span className="font-bold text-val-text">{w.word}</span>，先照着选，回头让家长检查一下设备声音
+                </p>
+              </div>
+            ) : (
+              <p className="mt-3 text-sm text-val-dim">📻 听无线电录音，选出你听到的单词</p>
+            )}
           </div>
         )}
         {current.type === "spell" && (

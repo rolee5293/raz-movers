@@ -124,9 +124,16 @@ if (typeof window !== "undefined" && "speechSynthesis" in window) {
   };
 }
 
-export function speakAsync(text: string, rate = 0.9): Promise<void> {
+/**
+ * 机器朗读。返回是否**真的出声**。
+ *
+ * 部分设备（系统未装英文语音包、精简版安卓、无头环境）虽然有 speechSynthesis 接口，
+ * 但一个语音都没有，speak() 直接静默失败。若不把这个结果回传，
+ * 界面会显示"正在播放"却什么都听不到，孩子只会以为是自己点错了。
+ */
+export function speakAsync(text: string, rate = 0.9): Promise<boolean> {
   return new Promise((resolve) => {
-    if (!("speechSynthesis" in window)) return resolve();
+    if (!("speechSynthesis" in window)) return resolve(false);
     try {
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
@@ -134,13 +141,21 @@ export function speakAsync(text: string, rate = 0.9): Promise<void> {
       u.rate = rate;
       const v = pickVoice();
       if (v) u.voice = v;
-      u.onend = () => resolve();
-      u.onerror = () => resolve();
+
+      let started = false;
+      u.onstart = () => {
+        started = true;
+      };
+      // 光看 onstart 不够：部分实现（如无语音包的设备、无头 WebKit）没有任何可用语音，
+      // 却照样按顺序抛出 onstart/onend，听感上全程静默。必须同时确认系统真有语音。
+      const spoke = () => started && hasVoiceSupport();
+      u.onend = () => resolve(spoke());
+      u.onerror = () => resolve(false);
       window.speechSynthesis.speak(u);
       // 部分平台 onend 不触发的保险
-      setTimeout(resolve, Math.max(2500, text.length * 160));
+      setTimeout(() => resolve(spoke()), Math.max(2500, text.length * 160));
     } catch {
-      resolve();
+      resolve(false);
     }
   });
 }
@@ -270,7 +285,8 @@ function playAudio(url: string): Promise<boolean> {
   });
 }
 
-export type SpeakPhase = "loading" | "playing" | "done";
+/** unavailable：录音与机器朗读都没能出声，需要给出可见反馈而不是假装播完了 */
+export type SpeakPhase = "loading" | "playing" | "done" | "unavailable";
 
 /**
  * 统一单词发音入口：真人录音优先，失败回退高质量 TTS。
@@ -294,8 +310,7 @@ export async function speakWord(rawWord: string, onPhase?: (p: SpeakPhase) => vo
       }
     }
     onPhase?.("playing");
-    await speakAsync(word, 0.9);
-    onPhase?.("done");
+    onPhase?.((await speakAsync(word, 0.9)) ? "done" : "unavailable");
     return;
   }
 
@@ -312,8 +327,14 @@ export async function speakWord(rawWord: string, onPhase?: (p: SpeakPhase) => vo
     // 录音加载失败 → 继续走 TTS 回退
   }
   onPhase?.("playing");
-  await speakAsync(word, 0.9);
-  onPhase?.("done");
+  // 录音与朗读都没出声：告诉用户，而不是静默结束让人以为没点到
+  onPhase?.((await speakAsync(word, 0.9)) ? "done" : "unavailable");
+}
+
+/** 本机是否具备发音能力（无录音时的兜底手段是否可用） */
+export function hasVoiceSupport(): boolean {
+  if (!("speechSynthesis" in window)) return false;
+  return window.speechSynthesis.getVoices().length > 0;
 }
 
 /** 句子朗读（TTS，不等待）——例句等长文本用 */

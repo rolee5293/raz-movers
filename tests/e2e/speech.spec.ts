@@ -113,3 +113,67 @@ async function openStudy(page: import("@playwright/test").Page) {
   await page.getByRole("button", { name: /开始行动/ }).click();
   await expect(page.getByRole("button", { name: "播放发音", exact: true }).first()).toBeVisible({ timeout: 15_000 });
 }
+
+test.describe("发音完全不可用时的兜底", () => {
+  test.beforeEach(async ({ page }) => {
+    await seedSave(page, savedProgress());
+    // 模拟"系统一个英文语音都没有"的设备。
+    // 必须整体替换 window.speechSynthesis：改写其上的单个方法在 WebKit 上不生效，
+    // 该属性每次访问返回的是新的包装对象，补丁打在旧对象上，应用读到的仍是原实现。
+    await page.addInitScript(() => {
+      const dead = {
+        getVoices: () => [],
+        speak: () => {},
+        cancel: () => {},
+        pause: () => {},
+        resume: () => {},
+        speaking: false,
+        pending: false,
+        paused: false,
+        onvoiceschanged: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+      };
+      Object.defineProperty(window, "speechSynthesis", { configurable: true, get: () => dead });
+    });
+  });
+
+  test("录音与朗读都失败时，喇叭给出可见反馈而不是假装播完", async ({ page, cloud, dict }) => {
+    cloud.rows = [];
+    dict.serverError = true; // 拿不到录音
+
+    await page.goto("/");
+    await page.getByText("今日行动").click();
+    await page.getByRole("button", { name: /开始行动/ }).click();
+
+    const speaker = page.getByRole("button", { name: "播放发音", exact: true }).first();
+    await speaker.click();
+
+    await expect(speaker).toHaveAttribute("title", /发不出声音/, { timeout: 15_000 });
+    await expect(speaker).toBeEnabled();
+  });
+
+  test("听音题放不出声时告知孩子题目单词，避免只能瞎猜", async ({ page, cloud, dict }) => {
+    cloud.rows = [];
+    dict.serverError = true;
+
+    await page.goto("/");
+    await page.getByRole("button", { name: /测验/ }).last().click();
+    await page.getByRole("button", { name: /开始|再来一局/ }).first().click();
+
+    // 题型顺序固定为 en2zh → zh2en → listen → zh2en → spell，
+    // 因此答完前两题必定进入听音题，无需靠随机碰运气
+    await answerOption(page);
+    await answerOption(page);
+
+    await expect(page.getByText("这台设备暂时发不出声音")).toBeVisible({ timeout: 15_000 });
+    // 题目单词要给出来，否则这道题孩子只能瞎猜
+    await expect(page.getByText(/本题的单词是/)).toBeVisible();
+  });
+});
+
+/** 作答当前选择题：选项按钮以 A/B/C/D 开头 */
+async function answerOption(page: import("@playwright/test").Page) {
+  await page.getByRole("button", { name: /^[ABCD] / }).first().click();
+  await page.waitForTimeout(1400); // 等反馈动画与自动进入下一题
+}

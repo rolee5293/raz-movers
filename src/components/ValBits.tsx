@@ -91,9 +91,11 @@ export function XpBar({ rank, xp }: { rank: RankDef; xp: number }) {
 
 export function SpeakerButton({ text, size = "md", className }: { text: string; size?: "sm" | "md" | "lg"; className?: string }) {
   const dims = size === "lg" ? "h-14 w-14 text-2xl" : size === "md" ? "h-11 w-11 text-lg" : "h-9 w-9 text-sm";
-  const [phase, setPhase] = useState<"idle" | "loading" | "playing">("idle");
-  const busy = phase !== "idle";
+  const [phase, setPhase] = useState<"idle" | "loading" | "playing" | "unavailable">("idle");
+  const busy = phase === "loading" || phase === "playing";
 
+  // "没出声"的静音标记保持到下次点击为止，不做定时自动收起：
+  // 一闪而过的提示孩子根本来不及看到，家长事后也无从判断是设备问题还是没点中
   const handle = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (busy) return; // 播放/加载中防重复点击
@@ -105,18 +107,22 @@ export function SpeakerButton({ text, size = "md", className }: { text: string; 
     } else {
       // 例句等长文本：TTS
       setPhase("playing");
-      await speakAsync(text, 0.92);
-      setPhase("idle");
+      const spoke = await speakAsync(text, 0.92);
+      setPhase(spoke ? "idle" : "unavailable");
     }
   };
 
   return (
     <button
       aria-label="播放发音"
+      title={phase === "unavailable" ? "这台设备暂时发不出声音" : undefined}
       disabled={busy}
       onClick={handle}
       className={cn(
-        "clip-card-sm inline-flex shrink-0 items-center justify-center border border-val-line bg-val-panel2 text-val-teal transition-colors",
+        "clip-card-sm inline-flex shrink-0 items-center justify-center border bg-val-panel2 transition-colors",
+        phase === "unavailable"
+          ? "border-val-gold/60 text-val-gold"
+          : "border-val-line text-val-teal",
         busy ? "cursor-wait opacity-90" : "hover:border-val-teal active:bg-val-teal active:text-val-bg",
         dims,
         className
@@ -126,6 +132,8 @@ export function SpeakerButton({ text, size = "md", className }: { text: string; 
         <span className="val-spinner" aria-hidden />
       ) : phase === "playing" ? (
         <span className="anim-flame" aria-hidden>📢</span>
+      ) : phase === "unavailable" ? (
+        <span aria-hidden>🔇</span>
       ) : (
         "🔊"
       )}
