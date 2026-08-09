@@ -14,12 +14,12 @@ import {
 import { applyRewards, type AgentDef, type BadgeDef, type RankDef } from "@/lib/game";
 import {
   downloadSave,
-  lastCloudSync,
   markAdoptedCloud,
   markInitialSyncSettled,
   scheduleUpload,
   uploadNow,
 } from "@/lib/cloud";
+import { mergeSaves } from "@/lib/merge";
 import { TopBar } from "@/components/TopBar";
 import { BottomNav, type TabId } from "@/components/BottomNav";
 import { RankUpOverlay, UnlockToasts } from "@/components/Celebrations";
@@ -85,14 +85,10 @@ export default function App() {
         if (cancelled || !row) return;
         const cloud = row.data as SaveState | null;
         if (!cloud || cloud.version !== 1) return;
-        const syncPt = lastCloudSync();
-        const shouldAdopt = syncPt ? row.updated_at > syncPt : (cloud.xp ?? 0) > saveRef.current.xp;
-        if (!shouldAdopt) return;
-        setSave((prev) => ({
-          ...prev,
-          ...cloud,
-          stats: { ...prev.stats, ...(cloud.stats ?? {}) },
-        }));
+        // 云端返回的已是各设备存档的合并结果，这里再与本机存档取并。
+        // 相比原先"比时间戳决定是否整份覆盖"，合并不会丢任何一侧的进度，
+        // 也不再受设备时钟偏差影响。
+        setSave((prev) => mergeSaves([prev, cloud]) ?? prev);
         markAdoptedCloud(row.updated_at);
       } finally {
         // 无论成功失败都要放行上传，否则存档永远传不上去

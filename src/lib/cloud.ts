@@ -6,6 +6,9 @@
  * anon key 为公开设计；service_role 严禁出现在此。
  */
 
+import { mergeSaves } from "./merge";
+import type { SaveState } from "@/types";
+
 const SUPA_URL = "https://rzpdymowshzgnmckzebi.supabase.co";
 const ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6cGR5bW93c2h6Z25tY2t6ZWJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3ODE1MzEsImV4cCI6MjEwMDM1NzUzMX0.b7l91Tj-zdF5PVT6tMnfFHemsLBYpvzE7UpPy4dgfE8";
@@ -14,10 +17,38 @@ const ANON_KEY =
 export const CLOUD_APP_ID = "raz";
 
 const LS_LAST_SYNC = `${CLOUD_APP_ID}-last-cloud-sync`;
+const LS_DEVICE_ID = `${CLOUD_APP_ID}-device-id`;
 const TABLE = `${SUPA_URL}/rest/v1/progress`;
 
 /** 启动下载超时：网络不通时也要尽快放行本地流程与上传 */
 const DOWNLOAD_TIMEOUT_MS = 6000;
+
+/**
+ * 本机设备标识。每台设备在云端独占一行 app = "<appId>#<deviceId>"，
+ * 因此任何设备的写入都不会覆盖另一台设备的存档；
+ * 读取时把该应用的所有行合并，进度依旧连续。
+ *
+ * 迁移前的历史行 app = "<appId>"（无后缀）保留只读并参与合并，不再写入，
+ * 所以升级不会丢任何既有进度，前端回滚也不受影响。
+ */
+function deviceId(): string {
+  try {
+    const cached = localStorage.getItem(LS_DEVICE_ID);
+    if (cached) return cached;
+    const id =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    localStorage.setItem(LS_DEVICE_ID, id);
+    return id;
+  } catch {
+    // localStorage 不可用时退化为会话内临时 ID（本次会话仍能正常上传）
+    return "nostorage";
+  }
+}
+
+/** 本设备在云端的行标识 */
+export const ROW_KEY = `${CLOUD_APP_ID}#${deviceId()}`;
 
 const HEADERS = {
   apikey: ANON_KEY,
@@ -118,8 +149,9 @@ export async function uploadNow(getSave: () => object): Promise<void> {
       // 必须显式带上 updated_at：该列的 DEFAULT now() 只在 INSERT 时生效，
       // upsert 命中冲突走的是 UPDATE，不带这个字段时间戳会永远停在首次写入那一刻，
       // 结果就是家长端误报"已超过 N 天未同步"，且换设备后永远拉不回云端存档。
+      // 只写本设备那一行，绝不触碰其他设备的行
       body: JSON.stringify({
-        app: CLOUD_APP_ID,
+        app: ROW_KEY,
         data: getSave(),
         updated_at: new Date().toISOString(),
       }),
@@ -147,19 +179,28 @@ export interface CloudRow {
 }
 
 /** 启动时调用。返回云端行（无则 null），失败也返回 null（静默回退） */
+/**
+ * 拉取该应用**所有设备**的行并合并成一份存档。
+ * updated_at 取各行最大值——历史行时间戳很旧，取最小或取首行会误判为长期未同步。
+ */
 export async function downloadSave(): Promise<CloudRow | null> {
   setState("syncing");
   const ctrl = new AbortController();
   const timeout = setTimeout(() => ctrl.abort(), DOWNLOAD_TIMEOUT_MS);
   try {
-    const res = await fetch(`${TABLE}?app=eq.${CLOUD_APP_ID}&select=data,updated_at`, {
+    // like.<appId>* 同时命中历史行 "raz" 与各设备行 "raz#xxx"
+    const res = await fetch(`${TABLE}?app=like.${CLOUD_APP_ID}*&select=data,updated_at`, {
       headers: HEADERS,
       signal: ctrl.signal,
     });
     if (!res.ok) throw new Error(`fetch ${res.status}`);
     const rows = (await res.json()) as CloudRow[];
     setState("ok");
-    return rows?.[0] ?? null;
+    if (!rows || rows.length === 0) return null;
+    const merged = mergeSaves(rows.map((r) => r.data as SaveState | null));
+    if (!merged) return null;
+    const newest = rows.reduce((m, r) => (r.updated_at > m ? r.updated_at : m), rows[0].updated_at);
+    return { data: merged, updated_at: newest };
   } catch {
     setState("error");
     return null;
