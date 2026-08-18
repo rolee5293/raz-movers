@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { RankDef } from "@/lib/game";
+import type { BadgeHelpers, RankDef } from "@/lib/game";
+import { nextPeak } from "@/lib/game";
+import type { SaveState } from "@/types";
 import { speakWord, speakAsync } from "@/lib/speech";
 
 /* 小红色竖条 + 大写标题 */
@@ -66,6 +68,60 @@ export function RankChip({ rank, size = "md" }: { rank: RankDef; size?: "sm" | "
       />
       {rank.cnName}
     </span>
+  );
+}
+
+const PEAK_COLOR = "#FFF3B0";
+
+/** 巅峰等级徽章。满级之前不显示 */
+export function PeakChip({ level }: { level: number }) {
+  if (level <= 0) return null;
+  return (
+    <span
+      className="clip-tag val-title inline-flex items-center gap-1 px-2 py-0.5 text-[10px]"
+      style={{ background: `${PEAK_COLOR}22`, color: PEAK_COLOR, border: `1px solid ${PEAK_COLOR}66` }}
+    >
+      👑 巅峰 {level}
+    </span>
+  );
+}
+
+/**
+ * 满级之后接替 XpBar。段位条焊死在 100% 时不再有任何反馈，
+ * 这里明确告诉孩子下一级差什么——XP 和挑战分开显示，因为两者要同时满足。
+ */
+export function PeakBar({ save, helpers }: { save: SaveState; helpers: BadgeHelpers }) {
+  const next = nextPeak(save, helpers);
+  if (!next) {
+    return (
+      <div className="val-title text-[10px]" style={{ color: PEAK_COLOR }}>
+        XP {save.xp} · 巅峰满级 // LEGEND
+      </div>
+    );
+  }
+  const { def, cur, need, xpGap } = next;
+  const pct = Math.min(100, Math.round((cur / need) * 100));
+  return (
+    <div className="w-full">
+      <div className="mb-1 flex items-center justify-between gap-2 text-[10px] text-val-dim">
+        <span className="val-title truncate">
+          巅峰 {def.level} {def.name} · {def.challenge}
+        </span>
+        <span className="shrink-0" style={{ color: cur >= need ? "#3DDB9A" : undefined }}>
+          {cur}/{need}
+        </span>
+      </div>
+      <div className="clip-tag h-2 w-full bg-val-panel2">
+        <div
+          className="h-full transition-all duration-500"
+          style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${PEAK_COLOR}, #ff4655)` }}
+        />
+      </div>
+      <div className="mt-1 text-[10px] text-val-dim">
+        XP {save.xp}
+        {xpGap > 0 ? ` · 还差 ${xpGap} XP` : " · XP 已达标 ✓"}
+      </div>
+    </div>
   );
 }
 

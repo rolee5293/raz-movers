@@ -3,6 +3,7 @@ import type { Passage, SaveState } from "@/types";
 import { SectionHeader, ValButton } from "@/components/ValBits";
 import { speakAsync, stopAllAudio } from "@/lib/speech";
 import { cn } from "@/lib/utils";
+import { XP } from "@/lib/storage";
 
 interface Props {
   save: SaveState;
@@ -90,9 +91,9 @@ export function ReadingPage({ save, passages, onFinish, onExit }: Props) {
             {correct} <span className="text-xl text-val-dim">/ {total}</span>
           </h2>
           <p className={cn("val-title mt-1 text-sm", perfect ? "text-val-gold" : "text-val-teal")}>
-            {perfect ? "★ PERFECT RECON // 全对 +5 XP 奖励 ★" : `正确率 ${Math.round((correct / total) * 100)}%`}
+            {perfect ? `★ PERFECT RECON // 全对 +${XP.readPerfect} XP 奖励 ★` : `正确率 ${Math.round((correct / total) * 100)}%`}
           </p>
-          <p className="mt-1 text-xs text-val-dim">获得 +{correct * 5 + 10 + (perfect ? 5 : 0)} XP</p>
+          <p className="mt-1 text-xs text-val-dim">获得 +{correct * XP.readPerCorrect + XP.readBase + (perfect ? XP.readPerfect : 0)} XP</p>
           <ValButton className="mt-4 w-full" onClick={onExit}>
             返回基地 // BASE
           </ValButton>

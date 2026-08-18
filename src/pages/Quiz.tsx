@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { SaveState, Word } from "@/types";
-import { generateQuiz, todayStr, type QuizItem } from "@/lib/storage";
+import { generateQuiz, todayStr, XP, type QuizItem } from "@/lib/storage";
 import { speakWord, unlockAudio, prefetchPron } from "@/lib/speech";
 import { SectionHeader, SpeakerButton, ValButton } from "@/components/ValBits";
 import { PhonicsHint } from "@/components/PhonicsHint";
@@ -171,7 +171,7 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
             </div>
           </div>
           {score === total && (
-            <p className="val-title anim-combo-pop mt-3 text-sm text-val-gold">★ FLAWLESS // 满分 +10 XP ★</p>
+            <p className="val-title anim-combo-pop mt-3 text-sm text-val-gold">{`★ FLAWLESS // 满分 +${XP.quizPerfect} XP ★`}</p>
           )}
 
           {/* 失误复盘：错题单词 + 拼读提示 + 真人发音 */}

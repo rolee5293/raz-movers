@@ -160,7 +160,13 @@ export async function seedSave(page: Page, save: Record<string, unknown>) {
   );
 }
 
-/** 一份"已学 40 词、今日未做任务"的存档，足以解锁测验与复习 */
+/**
+ * 一份"已学 40 词、今日未做任务"的存档，足以解锁测验与复习。
+ *
+ * 默认带 xpRate: 2（统一费率）。这些用例测的是同步与合并语义，
+ * 不带这个标记的话存档一加载就会走一次历史补差，XP 被改写，
+ * 断言的 XP 数字全部对不上——那是 migrate.test.ts 的职责，不该在这里混进来。
+ */
 export function savedProgress(over: Record<string, unknown> = {}) {
   const words: Record<string, unknown> = {};
   for (let i = 0; i < 40; i++) {
@@ -168,6 +174,7 @@ export function savedProgress(over: Record<string, unknown> = {}) {
   }
   return {
     version: 1,
+    xpRate: 2,
     createdAt: "2026-07-23",
     xp: 500,
     wordCursor: 40,

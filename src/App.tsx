@@ -10,8 +10,10 @@ import {
   recountMastered,
   todayStr,
   badgeHelpers,
+  XP,
+  migrateXpRate,
 } from "@/lib/storage";
-import { applyRewards, type AgentDef, type BadgeDef, type RankDef } from "@/lib/game";
+import { applyRewards, type AgentDef, type BadgeDef, type PeakDef, type RankDef } from "@/lib/game";
 import {
   downloadSave,
   markAdoptedCloud,
@@ -22,7 +24,7 @@ import {
 import { mergeSaves } from "@/lib/merge";
 import { TopBar } from "@/components/TopBar";
 import { BottomNav, type TabId } from "@/components/BottomNav";
-import { RankUpOverlay, UnlockToasts } from "@/components/Celebrations";
+import { PeakUpOverlay, RankUpOverlay, UnlockToasts } from "@/components/Celebrations";
 import { HomePage, type MissionKind } from "@/pages/Home";
 import { StudyPage, type GradeResult } from "@/pages/Study";
 import { QuizPage } from "@/pages/Quiz";
@@ -36,7 +38,7 @@ function addDayXp(save: SaveState, date: string, amount: number): SaveState {
   return { ...save, daily: { ...save.daily, [date]: { ...rec, xp: (rec.xp ?? 0) + amount } } };
 }
 
-/** 每日全任务完成奖励：+20 XP，计一次完美行动日 */
+/** 每日全任务完成奖励，计一次完美行动日。分值统一在 storage.ts 的 XP 常量里 */
 function withDailyBonus(save: SaveState, date: string): { save: SaveState; bonusXp: number } {
   const rec = save.daily[date];
   if (!rec || rec.bonusGiven || !isDayAllDone(rec)) return { save, bonusXp: 0 };
@@ -46,7 +48,7 @@ function withDailyBonus(save: SaveState, date: string): { save: SaveState; bonus
       daily: { ...save.daily, [date]: { ...rec, bonusGiven: true } },
       stats: { ...save.stats, perfectDays: save.stats.perfectDays + 1 },
     },
-    bonusXp: 20,
+    bonusXp: XP.dailyBonus,
   };
 }
 
@@ -56,6 +58,7 @@ export default function App() {
   const [vocab, setVocab] = useState<Word[] | null>(null);
   const [passages, setPassages] = useState<Passage[] | null>(null);
   const [rankUp, setRankUp] = useState<RankDef | null>(null);
+  const [peakUp, setPeakUp] = useState<PeakDef | null>(null);
   const [toasts, setToasts] = useState<{ badges: BadgeDef[]; agents: AgentDef[] }>({
     badges: [],
     agents: [],
@@ -85,10 +88,13 @@ export default function App() {
         if (cancelled || !row) return;
         const cloud = row.data as SaveState | null;
         if (!cloud || cloud.version !== 1) return;
+        // 先把云端存档补差到统一费率再合并。本机存档在 loadSave 时已经补过，
+        // 若直接合并未迁移的云端存档，取 max 拿到的会是旧费率的低分。
+        const cloudMigrated = migrateXpRate(cloud);
         // 云端返回的已是各设备存档的合并结果，这里再与本机存档取并。
         // 相比原先"比时间戳决定是否整份覆盖"，合并不会丢任何一侧的进度，
         // 也不再受设备时钟偏差影响。
-        setSave((prev) => mergeSaves([prev, cloud]) ?? prev);
+        setSave((prev) => mergeSaves([prev, cloudMigrated]) ?? prev);
         markAdoptedCloud(row.updated_at);
       } finally {
         // 无论成功失败都要放行上传，否则存档永远传不上去
@@ -111,6 +117,7 @@ export default function App() {
     const fx = applyRewards(next, xp, badgeHelpers(next));
     setSave(fx.save);
     if (fx.rankUp) setRankUp(fx.rankUp);
+    if (fx.peakUp) setPeakUp(fx.peakUp);
     if (fx.newBadges.length || fx.newAgents.length)
       setToasts((t) => ({ badges: [...t.badges, ...fx.newBadges], agents: [...t.agents, ...fx.newAgents] }));
     void uploadNow(() => fx.save); // 任务完成立即上传（不等防抖）
@@ -152,7 +159,7 @@ export default function App() {
         [today]: { ...rec, newTask: { ...rec.newTask, done: true, known } },
       },
     };
-    const taskXp = known * 1 + 5;
+    const taskXp = known * XP.wordPerKnown + XP.wordBase;
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };
@@ -176,7 +183,7 @@ export default function App() {
         [today]: { ...rec, reviewTask: { ...rec.reviewTask, done: true, known } },
       },
     };
-    const taskXp = known * 1 + 5;
+    const taskXp = known * XP.wordPerKnown + XP.wordBase;
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };
@@ -204,7 +211,7 @@ export default function App() {
           }
         : save.daily,
     };
-    const taskXp = score * 8 + (perfect ? 10 : 0);
+    const taskXp = score * XP.quizPerCorrect + (perfect ? XP.quizPerfect : 0);
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };
@@ -219,6 +226,7 @@ export default function App() {
         ...save.stats,
         readingsDone: save.stats.readingsDone + 1,
         readingsPerfect: save.stats.readingsPerfect + (perfect ? 1 : 0),
+        readingCorrect: (save.stats.readingCorrect ?? 0) + correct,
       },
       daily: rec
         ? {
@@ -229,7 +237,7 @@ export default function App() {
           }
         : save.daily,
     };
-    const taskXp = correct * 5 + 10 + (perfect ? 5 : 0);
+    const taskXp = correct * XP.readPerCorrect + XP.readBase + (perfect ? XP.readPerfect : 0);
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };
@@ -288,6 +296,7 @@ export default function App() {
       </main>
       <BottomNav tab={tab} onChange={setTab} />
       {rankUp && <RankUpOverlay rank={rankUp} onClose={() => setRankUp(null)} />}
+      {!rankUp && peakUp && <PeakUpOverlay peak={peakUp} onClose={() => setPeakUp(null)} />}
       <UnlockToasts
         badges={toasts.badges}
         agents={toasts.agents}

@@ -1,5 +1,52 @@
-import type { AgentDef, BadgeDef, RankDef } from "@/lib/game";
+import type { AgentDef, BadgeDef, PeakDef, RankDef } from "@/lib/game";
 import { ValButton } from "@/components/ValBits";
+
+/** 巅峰晋级全屏动画。段位满级之后，晋级的仪式感由这里接管 */
+export function PeakUpOverlay({ peak, onClose }: { peak: PeakDef; onClose: () => void }) {
+  const color = "#FFF3B0";
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 bg-grid px-6">
+      <p className="val-title mb-6 text-sm tracking-[0.4em] text-val-gold text-glow-red anim-fade-up">
+        ASCENSION // 巅峰晋级
+      </p>
+      <div className="relative flex h-48 w-48 items-center justify-center">
+        <span className="anim-rankup-ring absolute inset-0 rotate-45 border-4" style={{ borderColor: color }} />
+        <span
+          className="anim-rankup-ring absolute inset-4 rotate-45 border-2"
+          style={{ borderColor: color, animationDelay: "0.3s" }}
+        />
+        <div
+          className="anim-rankup-in clip-card flex h-36 w-36 rotate-45 items-center justify-center border-4 bg-val-panel"
+          style={{ borderColor: color, boxShadow: `0 0 60px ${color}88` }}
+        >
+          <div className="-rotate-45 text-center">
+            <div className="text-4xl">👑</div>
+            <div className="val-title text-lg" style={{ color }}>
+              {peak.level}
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1
+        className="val-title anim-fade-up mt-8 text-3xl font-black"
+        style={{ color, animationDelay: "0.35s", textShadow: `0 0 24px ${color}` }}
+      >
+        巅峰 {peak.level} · {peak.name}
+      </h1>
+      <p className="val-title anim-fade-up mt-1 text-lg text-val-text" style={{ animationDelay: "0.45s" }}>
+        {peak.en}
+      </p>
+      <p className="anim-fade-up mt-3 text-xs text-val-dim" style={{ animationDelay: "0.55s" }}>
+        挑战达成：{peak.challenge}
+      </p>
+      <div className="anim-fade-up mt-8" style={{ animationDelay: "0.7s" }}>
+        <ValButton onClick={onClose} className="px-10">
+          确认 // CONFIRM
+        </ValButton>
+      </div>
+    </div>
+  );
+}
 
 /** 段位晋升全屏动画 */
 export function RankUpOverlay({ rank, onClose }: { rank: RankDef; onClose: () => void }) {

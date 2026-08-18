@@ -22,11 +22,116 @@ export function addDaysStr(dateStr: string, days: number): string {
   return todayStr(d);
 }
 
+/* ================= XP 费率 ================= */
+
+/**
+ * 统一后的 XP 费率——两个应用必须完全一致。
+ * 上线时两边各自调校过（弟弟那套约为哥哥的三分之一），配套的段位门槛也调低了，
+ * 本来能相抵；但两人都打满 RADIANT III 之后段位不再有区分度，
+ * 屏幕上只剩 TOTAL XP 这个裸数字，干得多的一方反而分低。2026-08-18 统一。
+ */
+export const XP = {
+  wordPerKnown: 2,
+  wordBase: 10,
+  quizPerCorrect: 10,
+  quizPerfect: 50,
+  readPerCorrect: 10,
+  readBase: 30,
+  readPerfect: 30,
+  dailyBonus: 50,
+} as const;
+
+/** 本应用上线时的旧费率。只用于一次性补差，不要用于任何新增分值 */
+const LEGACY_XP = {
+  wordPerKnown: 1,
+  wordBase: 5,
+  quizPerCorrect: 8,
+  quizPerfect: 10,
+  readPerCorrect: 5,
+  readBase: 10,
+  readPerfect: 5,
+  dailyBonus: 20,
+} as const;
+
+/**
+ * 一次性历史补差：把旧费率下攒出来的 XP 换算成统一费率下的等值分数。
+ *
+ * 不是简单乘一个倍数，而是按存档里的真实活动逐项重算，所以补出来的分
+ * 每一分都对得上他自己做过的题。阅读没有单独记累计答对数，用总 XP 扣掉
+ * 其余分项反推——残差法保证按旧费率能精确还原历史总分（8 台设备实测残差均为正）。
+ *
+ * 幂等由 xpRate 标记保证，该标记必须在 mergeSaves 里显式传递。
+ */
+export function migrateXpRate(save: SaveState): SaveState {
+  if ((save.xpRate ?? 1) >= 2) return save;
+
+  let known = 0;
+  let tasks = 0;
+  for (const rec of Object.values(save.daily ?? {})) {
+    if (rec.newTask?.done) {
+      tasks++;
+      known += rec.newTask.known ?? 0;
+    }
+    if (rec.reviewTask?.done) {
+      tasks++;
+      known += rec.reviewTask.known ?? 0;
+    }
+  }
+  const st = save.stats;
+  const legacyOther =
+    known * LEGACY_XP.wordPerKnown +
+    tasks * LEGACY_XP.wordBase +
+    st.quizCorrect * LEGACY_XP.quizPerCorrect +
+    st.perfectQuizzes * LEGACY_XP.quizPerfect +
+    st.perfectDays * LEGACY_XP.dailyBonus;
+  const readingCorrect = Math.round(
+    (save.xp -
+      legacyOther -
+      st.readingsDone * LEGACY_XP.readBase -
+      st.readingsPerfect * LEGACY_XP.readPerfect) /
+      LEGACY_XP.readPerCorrect,
+  );
+
+  // 存档异常（残差为负或非有限）时只打标记不改分：宁可不补，也不能把分算坏
+  if (!Number.isFinite(readingCorrect) || readingCorrect < 0) {
+    return { ...save, xpRate: 2 };
+  }
+
+  const recomputed =
+    known * XP.wordPerKnown +
+    tasks * XP.wordBase +
+    st.quizCorrect * XP.quizPerCorrect +
+    st.perfectQuizzes * XP.quizPerfect +
+    readingCorrect * XP.readPerCorrect +
+    st.readingsDone * XP.readBase +
+    st.readingsPerfect * XP.readPerfect +
+    st.perfectDays * XP.dailyBonus;
+
+  // 只增不减
+  const xp = Math.max(save.xp, recomputed);
+
+  // 家长看板的 14 天柱状图读的是每日 xp，不同步放大的话总分跳了、图还是旧刻度
+  const ratio = save.xp > 0 ? xp / save.xp : 1;
+  const daily =
+    ratio === 1
+      ? save.daily
+      : Object.fromEntries(
+          Object.entries(save.daily ?? {}).map(([d, rec]) => [
+            d,
+            rec.xp ? { ...rec, xp: Math.round(rec.xp * ratio) } : rec,
+          ]),
+        );
+
+  return { ...save, xp, xpRate: 2, daily, stats: { ...st, readingCorrect } };
+}
+
 /* ================= 存档 ================= */
+
 
 function defaultSave(): SaveState {
   return {
     version: 1,
+    xpRate: 2,
     createdAt: todayStr(),
     xp: 0,
     wordCursor: 0,
@@ -45,6 +150,7 @@ function defaultSave(): SaveState {
       bestCombo: 0,
       wordsLearned: 0,
       perfectDays: 0,
+      readingCorrect: 0,
     },
   };
 }
@@ -55,7 +161,14 @@ export function loadSave(): SaveState {
     if (!raw) return defaultSave();
     const parsed = JSON.parse(raw) as SaveState;
     if (parsed.version !== 1) return defaultSave();
-    return { ...defaultSave(), ...parsed, stats: { ...defaultSave().stats, ...parsed.stats } };
+    // xpRate 必须显式取 parsed 的值：展开时"键不存在"不会覆盖 defaultSave() 的 2，
+    // 旧存档会被当成已补差而跳过迁移——补差就永远不会发生。
+    return migrateXpRate({
+      ...defaultSave(),
+      ...parsed,
+      xpRate: parsed.xpRate ?? 1,
+      stats: { ...defaultSave().stats, ...parsed.stats },
+    });
   } catch {
     return defaultSave();
   }

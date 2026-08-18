@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { SaveState, Word } from "@/types";
-import { todayStr } from "@/lib/storage";
+import { todayStr, XP } from "@/lib/storage";
 import { SectionHeader, SpeakerButton, ValButton } from "@/components/ValBits";
 import { PhonicsHint } from "@/components/PhonicsHint";
 import { cn } from "@/lib/utils";
@@ -133,7 +133,7 @@ export function StudyPage({ save, vocab, onFinishNew, onFinishReview, onExit }: 
             </div>
           </div>
           <p className="mt-4 text-xs text-val-dim">
-            获得 <span className="text-val-gold">+{known + 5} XP</span>
+            获得 <span className="text-val-gold">+{known * XP.wordPerKnown + XP.wordBase} XP</span>
             {phase === "new" && reviewWords.length > 0 ? " · 接下来是今日复习" : ""}
           </p>
           <ValButton className="mt-5 w-full" onClick={finishPhase}>

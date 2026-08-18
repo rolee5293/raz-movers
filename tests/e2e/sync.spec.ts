@@ -92,6 +92,23 @@ test.describe("云同步", () => {
     expect((cloud.uploads[cloud.uploads.length - 1].data as { xp: number }).xp).toBe(5000);
   });
 
+  test("旧费率存档打开即补差，且补差结果会同步到云端", async ({ page, cloud }) => {
+    // 不带 xpRate 的存档 = 2026-08-18 之前按旧费率攒的分
+    const legacy = savedProgress({ xp: 500 });
+    delete (legacy as Record<string, unknown>).xpRate;
+    await seedSave(page, legacy);
+
+    await page.goto("/");
+    // 24 题答对 + 1 次满分 + 5 篇阅读(1 篇全对) + 2 个完美日，按统一费率重算为 980
+    await expect(page.getByText("XP 980")).toBeVisible({ timeout: 15_000 });
+
+    // 补差结果必须上传，否则换台设备又变回旧分数
+    await expect.poll(() => cloud.uploads.length, { timeout: 15_000 }).toBeGreaterThan(0);
+    const last = cloud.uploads[cloud.uploads.length - 1].data as { xp: number; xpRate: number };
+    expect(last.xp).toBe(980);
+    expect(last.xpRate).toBe(2);
+  });
+
   test("云端不可用时应用照常可用，不阻塞学习", async ({ page, cloud }) => {
     cloud.offline = true;
     await seedSave(page, savedProgress({ xp: 700 }));

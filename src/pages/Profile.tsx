@@ -1,7 +1,7 @@
-import { AGENTS, BADGES, rankForXp } from "@/lib/game";
-import { streakInfo } from "@/lib/storage";
+import { AGENTS, BADGES, PEAKS, peakLevel, peakMet, rankForXp } from "@/lib/game";
+import { badgeHelpers, streakInfo } from "@/lib/storage";
 import type { SaveState } from "@/types";
-import { RankChip, SectionHeader } from "@/components/ValBits";
+import { PeakChip, RankChip, SectionHeader } from "@/components/ValBits";
 import { cn } from "@/lib/utils";
 
 export function ProfilePage({
@@ -16,6 +16,8 @@ export function ProfilePage({
   const rank = rankForXp(save.xp);
   const streak = streakInfo(save);
   const s = save.stats;
+  const helpers = badgeHelpers(save);
+  const peak = peakLevel(save, helpers);
 
   const statItems = [
     { label: "总 XP", value: save.xp, icon: "⚡" },
@@ -45,12 +47,56 @@ export function ProfilePage({
             {rank.tier[0]}
           </span>
         </div>
-        <div className="mt-4 flex items-center justify-center">
+        <div className="mt-4 flex items-center justify-center gap-2">
           <RankChip rank={rank} />
+          <PeakChip level={peak} />
         </div>
         <p className="mt-1 text-[11px] text-val-dim">
-          下一阶还需 {rank.nextXp !== null ? rank.nextXp - save.xp : 0} XP
+          {rank.nextXp !== null ? `下一阶还需 ${rank.nextXp - save.xp} XP` : "段位已满级，转入巅峰层"}
         </p>
+      </div>
+
+      {/* 巅峰层：满级之后的目标。每级要 XP 与挑战同时达成，且逐级解锁 */}
+      <div>
+        <SectionHeader title="巅峰层 // ASCENSION" />
+        <div className="space-y-1.5">
+          {PEAKS.map((def) => {
+            const { cur, need } = def.progress(save, helpers);
+            const done = peakMet(def, save, helpers);
+            const unlocked = def.level <= peak;
+            const isNext = def.level === peak + 1;
+            return (
+              <div
+                key={def.level}
+                className={cn(
+                  "clip-card flex items-center gap-3 border p-2.5",
+                  unlocked
+                    ? "border-val-gold/60 bg-val-gold/10"
+                    : isNext
+                      ? "border-val-red/60 bg-val-panel"
+                      : "border-val-line bg-val-panel opacity-60",
+                )}
+              >
+                <span className="val-title w-14 shrink-0 text-[11px] text-val-dim">巅峰 {def.level}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="val-title truncate text-xs text-val-text">
+                    {unlocked ? "👑 " : isNext ? "▶ " : "🔒 "}
+                    {def.name} · {def.en}
+                  </p>
+                  <p className="truncate text-[10px] text-val-dim">{def.challenge}</p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className={cn("val-title text-[11px]", done ? "text-val-teal" : "text-val-dim")}>
+                    {cur}/{need}
+                  </p>
+                  <p className="text-[9px] text-val-dim">
+                    {save.xp >= def.minXp ? "XP ✓" : `XP ${def.minXp}`}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* 统计 */}

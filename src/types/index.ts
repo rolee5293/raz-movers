@@ -79,10 +79,20 @@ export interface Stats {
   bestCombo: number;
   wordsLearned: number; // total words ever entered SRS
   perfectDays: number;
+  /** 阅读累计答对题数。v1 存档没有这一项，迁移时由历史 XP 反推补齐 */
+  readingCorrect?: number;
 }
 
 export interface SaveState {
   version: 1;
+  /**
+   * XP 费率版本。1 = 上线时各自调校的旧费率，2 = 两个应用统一后的费率。
+   * 单独于 version 之外，是因为 version 承担存档结构兼容（loadSave 与 mergeSaves
+   * 都硬校验 === 1），一旦改动旧存档会被整份丢弃。
+   * 缺失视为 1，loadSave 时补差一次并置为 2；必须在 mergeSaves 里显式传递，
+   * 否则一次云端合并就会抹掉标记、导致重复补差。
+   */
+  xpRate?: number;
   createdAt: string;
   xp: number;
   wordCursor: number; // next unlearned word global index

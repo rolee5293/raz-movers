@@ -73,6 +73,9 @@ function mergeTwo(a: SaveState, b: SaveState): SaveState {
 
   return {
     version: 1,
+    // 必须显式带上：这个对象是重建的，漏掉一个字段就等于把它从存档里抹掉。
+    // xpRate 一旦丢失，已补过差的设备会被判为未迁移而再补一次。
+    xpRate: max(a.xpRate ?? 1, b.xpRate ?? 1),
     createdAt: a.createdAt < b.createdAt ? a.createdAt : b.createdAt,
     xp: max(a.xp, b.xp),
     wordCursor: max(a.wordCursor, b.wordCursor),
@@ -94,6 +97,7 @@ function mergeTwo(a: SaveState, b: SaveState): SaveState {
       bestCombo: max(a.stats?.bestCombo, b.stats?.bestCombo),
       wordsLearned: max(a.stats?.wordsLearned, b.stats?.wordsLearned),
       perfectDays: max(a.stats?.perfectDays, b.stats?.perfectDays),
+      readingCorrect: max(a.stats?.readingCorrect, b.stats?.readingCorrect),
     },
   };
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { AGENTS, rankForXp } from "@/lib/game";
+import { AGENTS, peakLevel, rankForXp } from "@/lib/game";
 import { onCloudState, type CloudState } from "@/lib/cloud";
-import { streakInfo } from "@/lib/storage";
+import { badgeHelpers, streakInfo } from "@/lib/storage";
 import type { SaveState } from "@/types";
-import { RankChip, XpBar } from "@/components/ValBits";
+import { PeakBar, PeakChip, RankChip, XpBar } from "@/components/ValBits";
 
 const DOT: Record<CloudState, { color: string; title: string }> = {
   idle: { color: "#5A6068", title: "未同步" },
@@ -33,6 +33,10 @@ export function TopBar({ save }: { save: SaveState }) {
   const rank = rankForXp(save.xp);
   const agent = AGENTS.find((a) => a.id === save.agents.current) ?? AGENTS[0];
   const streak = streakInfo(save).current;
+  // 段位满级后 XpBar 永远是 100%，换成巅峰进度条才有反馈
+  const helpers = badgeHelpers(save);
+  const peak = peakLevel(save, helpers);
+  const maxed = rank.nextXp === null;
   return (
     <header className="sticky top-0 z-30 border-b border-val-line bg-val-bg/95 backdrop-blur">
       <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-2.5">
@@ -47,9 +51,10 @@ export function TopBar({ save }: { save: SaveState }) {
             <CloudDot />
             <span className="val-title truncate text-xs text-val-text">{agent.codename}</span>
             <RankChip rank={rank} size="sm" />
+            <PeakChip level={peak} />
           </div>
           <div className="mt-1">
-            <XpBar rank={rank} xp={save.xp} />
+            {maxed ? <PeakBar save={save} helpers={helpers} /> : <XpBar rank={rank} xp={save.xp} />}
           </div>
         </div>
         <div className="flex shrink-0 flex-col items-center">

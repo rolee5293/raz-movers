@@ -28,13 +28,13 @@ const TIERS: Array<{ tier: string; cn: string; color: string }> = [
 
 const ROMAN = ["I", "II", "III"] as const;
 
-// 每小阶所需累计 XP：60 + i*25，27 阶总计约 9700 到 Radiant（按每日约 100-150 XP 调校）
+// 每小阶所需累计 XP：200 + i*80，27 阶共 31200 到 RADIANT III（与 ielts-protocol 统一）
 const THRESHOLDS: number[] = (() => {
   const arr: number[] = [];
   let c = 0;
   for (let i = 0; i < 27; i++) {
     arr.push(c);
-    c += 60 + i * 25;
+    c += 200 + i * 80;
   }
   return arr;
 })();
@@ -122,11 +122,87 @@ export const AGENTS: AgentDef[] = [
   { id: "aether", codename: "AETHER-∞", role: "传说 / LEGEND", emoji: "🐉", color: "#FFF3B0", unlockDesc: "段位达到辐能战魂", cond: (s) => rankForXp(s.xp).idx >= 24 },
 ];
 
+/* ================= 巅峰层（RADIANT III 之上） ================= */
+
+/**
+ * 2026-08-18 两人同时打满 RADIANT III，段位条焊死在 100%，屏幕上只剩 TOTAL XP
+ * 一个裸数字可比——这正是"我加分不如哥哥"的由来。巅峰层在满级之上继续给目标，
+ * 但刻意**不做成纯 XP 门槛**：每一级都要 XP 与一个具体挑战同时达成，且逐级解锁。
+ * 光靠重复刷题攒 XP 升不上去，必须每天来、必须做难的事。
+ */
+export interface PeakDef {
+  level: number;
+  name: string;
+  en: string;
+  minXp: number;
+  /** 给孩子看的挑战说明 */
+  challenge: string;
+  /** 当前进度 / 目标值，用来在界面上显示"还差多少" */
+  progress: (s: SaveState, h: BadgeHelpers) => { cur: number; need: number };
+}
+
+/** 巅峰 1 的门槛就是 RADIANT III 的线：满级当天即可入巅峰，补差立刻兑现成看得见的等级 */
+
+const PEAK_XP = [31200, 33560, 36000, 38520, 41120, 43800, 46560, 49400, 52320, 55320];
+
+export const PEAKS: PeakDef[] = [
+  { level: 1, name: "觉醒", en: "AWAKEN", minXp: PEAK_XP[0], challenge: "累计 15 个完美行动日",
+    progress: (s) => ({ cur: s.stats.perfectDays, need: 15 }) },
+  { level: 2, name: "精准", en: "PRECISION", minXp: PEAK_XP[1], challenge: "累计 20 次测验满分",
+    progress: (s) => ({ cur: s.stats.perfectQuizzes, need: 20 }) },
+  { level: 3, name: "铁律", en: "IRON WILL", minXp: PEAK_XP[2], challenge: "连续打卡 10 天",
+    progress: (_s, h) => ({ cur: h.maxStreak, need: 10 }) },
+  { level: 4, name: "洞察", en: "INSIGHT", minXp: PEAK_XP[3], challenge: "阅读全对累计 40 篇",
+    progress: (s) => ({ cur: s.stats.readingsPerfect, need: 40 }) },
+  { level: 5, name: "锋刃", en: "EDGE", minXp: PEAK_XP[4], challenge: "单次测验打出 5 连击",
+    progress: (s) => ({ cur: s.stats.bestCombo, need: 5 }) },
+  { level: 6, name: "熔炼", en: "FORGE", minXp: PEAK_XP[5], challenge: "掌握 150 个单词",
+    progress: (s) => ({ cur: s.stats.masteredCount, need: 150 }) },
+  { level: 7, name: "无瑕", en: "FLAWLESS", minXp: PEAK_XP[6], challenge: "累计 40 个完美行动日",
+    progress: (s) => ({ cur: s.stats.perfectDays, need: 40 }) },
+  { level: 8, name: "恒久", en: "ETERNAL", minXp: PEAK_XP[7], challenge: "连续打卡 45 天",
+    progress: (_s, h) => ({ cur: h.maxStreak, need: 45 }) },
+  { level: 9, name: "通读", en: "SCHOLAR", minXp: PEAK_XP[8], challenge: "阅读全对累计 100 篇",
+    progress: (s) => ({ cur: s.stats.readingsPerfect, need: 100 }) },
+  { level: 10, name: "传说", en: "LEGEND", minXp: PEAK_XP[9], challenge: "掌握 400 个单词",
+    progress: (s) => ({ cur: s.stats.masteredCount, need: 400 }) },
+];
+
+/** 某一级是否达成（XP 与挑战都要满足） */
+export function peakMet(p: PeakDef, s: SaveState, h: BadgeHelpers): boolean {
+  const { cur, need } = p.progress(s, h);
+  return s.xp >= p.minXp && cur >= need;
+}
+
+/**
+ * 当前巅峰等级。逐级解锁——中间任何一级没达成就停在那里，
+ * 后面即使 XP 早就够了也不跳级（否则补差会让人一口气连跳好几级，之后再无目标）。
+ */
+export function peakLevel(s: SaveState, h: BadgeHelpers): number {
+  let lv = 0;
+  for (const p of PEAKS) {
+    if (!peakMet(p, s, h)) break;
+    lv = p.level;
+  }
+  return lv;
+}
+
+/** 下一级巅峰及其缺口；已满巅峰返回 null */
+export function nextPeak(s: SaveState, h: BadgeHelpers): { def: PeakDef; cur: number; need: number; xpGap: number } | null {
+  const lv = peakLevel(s, h);
+  const def = PEAKS[lv];
+  if (!def) return null;
+  const { cur, need } = def.progress(s, h);
+  return { def, cur, need, xpGap: Math.max(0, def.minXp - s.xp) };
+}
+
 /* ================= 奖励结算 ================= */
+
 
 export interface RewardFx {
   save: SaveState;
   rankUp: RankDef | null;
+  peakUp: PeakDef | null;
   newBadges: BadgeDef[];
   newAgents: AgentDef[];
 }
@@ -136,6 +212,9 @@ export function applyRewards(prev: SaveState, xpGain: number, helpers: BadgeHelp
   const before = rankForXp(prev.xp).idx;
   const after = rankForXp(save.xp).idx;
   const rankUp = after > before ? RANKS[after] : null;
+  const peakBefore = peakLevel(prev, helpers);
+  const peakAfter = peakLevel(save, helpers);
+  const peakUp = peakAfter > peakBefore ? PEAKS[peakAfter - 1] : null;
 
   const newBadges = BADGES.filter((b) => !save.badges.includes(b.id) && b.cond(save, helpers));
   if (newBadges.length) save = { ...save, badges: [...save.badges, ...newBadges.map((b) => b.id)] };
@@ -144,5 +223,5 @@ export function applyRewards(prev: SaveState, xpGain: number, helpers: BadgeHelp
   if (newAgents.length)
     save = { ...save, agents: { ...save.agents, unlocked: [...save.agents.unlocked, ...newAgents.map((a) => a.id)] } };
 
-  return { save, rankUp, newBadges, newAgents };
+  return { save, rankUp, peakUp, newBadges, newAgents };
 }

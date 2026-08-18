@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import type { DayRecord, SaveState } from "@/types";
-import { addDaysStr, isDayAllDone, todayStr } from "@/lib/storage";
+import { addDaysStr, isDayAllDone, todayStr, XP } from "@/lib/storage";
 import { SectionHeader, StatusTag, ValButton } from "@/components/ValBits";
 import { cn } from "@/lib/utils";
 
@@ -253,7 +253,7 @@ function TodayPanel({ save, onLaunch }: { save: SaveState; onLaunch: (k: Mission
         )}
         {!allDone && (
           <p className="mt-2 text-center text-[10px] text-val-dim">
-            全清 4 项任务 +20 XP · 计入连续打卡 🔥
+            {`全清 4 项任务 +${XP.dailyBonus} XP · 计入连续打卡 🔥`}
           </p>
         )}
       </div>
