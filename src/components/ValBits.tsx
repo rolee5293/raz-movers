@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { BadgeHelpers, RankDef } from "@/lib/game";
-import { nextPeak } from "@/lib/game";
+import { PEAKS, nextPeak } from "@/lib/game";
 import type { SaveState } from "@/types";
 import { speakWord, speakAsync } from "@/lib/speech";
 
@@ -76,12 +76,14 @@ const PEAK_COLOR = "#FFF3B0";
 /** 巅峰等级徽章。满级之前不显示 */
 export function PeakChip({ level }: { level: number }) {
   if (level <= 0) return null;
+  const def = PEAKS[level - 1];
   return (
     <span
       className="clip-tag val-title inline-flex items-center gap-1 px-2 py-0.5 text-[10px]"
       style={{ background: `${PEAK_COLOR}22`, color: PEAK_COLOR, border: `1px solid ${PEAK_COLOR}66` }}
     >
       👑 巅峰 {level}
+      {def ? ` ${def.name}` : ""}
     </span>
   );
 }

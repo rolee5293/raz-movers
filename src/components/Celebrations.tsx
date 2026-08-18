@@ -141,7 +141,7 @@ export function UnlockToasts({
               AGENT UNLOCKED
             </p>
             <p className="val-title text-sm text-val-text">
-              {a.codename} <span className="text-val-dim">// {a.role}</span>
+              {a.cnName} <span className="text-val-dim">{a.codename} // {a.role}</span>
             </p>
           </div>
           <button onClick={onDismiss} className="min-h-[44px] min-w-[44px] text-val-dim">

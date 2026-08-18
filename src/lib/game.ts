@@ -103,6 +103,8 @@ export const BADGES: BadgeDef[] = [
 export interface AgentDef {
   id: string;
   codename: string;
+  /** 两字中文名。代号是纯英文，孩子念不出来也记不住 */
+  cnName: string;
   role: string;
   emoji: string;
   color: string;
@@ -111,15 +113,15 @@ export interface AgentDef {
 }
 
 export const AGENTS: AgentDef[] = [
-  { id: "sage-01", codename: "SAGE-01", role: "新兵 / RECRUIT", emoji: "🪖", color: "#3DDBD9", unlockDesc: "初始特工", cond: () => true },
-  { id: "recon-x", codename: "RECON-X", role: "侦察 / SCOUT", emoji: "🎯", color: "#A97C50", unlockDesc: "段位达到青铜", cond: (s) => rankForXp(s.xp).idx >= 3 },
-  { id: "ghost-0", codename: "GHOST-0", role: "潜入 / INFILTRATOR", emoji: "👻", color: "#C4CDD4", unlockDesc: "段位达到白银", cond: (s) => rankForXp(s.xp).idx >= 6 },
-  { id: "blaze-7", codename: "BLAZE-7", role: "突击 / ASSAULT", emoji: "🔥", color: "#FF4655", unlockDesc: "连续打卡 7 天", cond: (_s, h) => h.maxStreak >= 7 },
-  { id: "volt-3", codename: "VOLT-3", role: "先锋 / VANGUARD", emoji: "⚡", color: "#FFC24B", unlockDesc: "段位达到黄金", cond: (s) => rankForXp(s.xp).idx >= 9 },
-  { id: "nova-k", codename: "NOVA-K", role: "军师 / STRATEGIST", emoji: "🌟", color: "#3DDBD9", unlockDesc: "累计掌握 300 词", cond: (s) => s.stats.masteredCount >= 300 },
-  { id: "titan-9", codename: "TITAN-9", role: "重装 / HEAVY", emoji: "🤖", color: "#C38BF5", unlockDesc: "段位达到钻石", cond: (s) => rankForXp(s.xp).idx >= 15 },
-  { id: "phantom-z", codename: "PHANTOM-Z", role: "幻影 / PHANTOM", emoji: "🥷", color: "#6FD66F", unlockDesc: "段位达到神话", cond: (s) => rankForXp(s.xp).idx >= 21 },
-  { id: "aether", codename: "AETHER-∞", role: "传说 / LEGEND", emoji: "🐉", color: "#FFF3B0", unlockDesc: "段位达到辐能战魂", cond: (s) => rankForXp(s.xp).idx >= 24 },
+  { id: "sage-01", codename: "SAGE-01", cnName: "贤者", role: "新兵 / RECRUIT", emoji: "🪖", color: "#3DDBD9", unlockDesc: "初始特工", cond: () => true },
+  { id: "recon-x", codename: "RECON-X", cnName: "斥候", role: "侦察 / SCOUT", emoji: "🎯", color: "#A97C50", unlockDesc: "段位达到青铜", cond: (s) => rankForXp(s.xp).idx >= 3 },
+  { id: "ghost-0", codename: "GHOST-0", cnName: "幽影", role: "潜入 / INFILTRATOR", emoji: "👻", color: "#C4CDD4", unlockDesc: "段位达到白银", cond: (s) => rankForXp(s.xp).idx >= 6 },
+  { id: "blaze-7", codename: "BLAZE-7", cnName: "烈焰", role: "突击 / ASSAULT", emoji: "🔥", color: "#FF4655", unlockDesc: "连续打卡 7 天", cond: (_s, h) => h.maxStreak >= 7 },
+  { id: "volt-3", codename: "VOLT-3", cnName: "疾电", role: "先锋 / VANGUARD", emoji: "⚡", color: "#FFC24B", unlockDesc: "段位达到黄金", cond: (s) => rankForXp(s.xp).idx >= 9 },
+  { id: "nova-k", codename: "NOVA-K", cnName: "新星", role: "军师 / STRATEGIST", emoji: "🌟", color: "#3DDBD9", unlockDesc: "累计掌握 300 词", cond: (s) => s.stats.masteredCount >= 300 },
+  { id: "titan-9", codename: "TITAN-9", cnName: "泰坦", role: "重装 / HEAVY", emoji: "🤖", color: "#C38BF5", unlockDesc: "段位达到钻石", cond: (s) => rankForXp(s.xp).idx >= 15 },
+  { id: "phantom-z", codename: "PHANTOM-Z", cnName: "魅影", role: "幻影 / PHANTOM", emoji: "🥷", color: "#6FD66F", unlockDesc: "段位达到神话", cond: (s) => rankForXp(s.xp).idx >= 21 },
+  { id: "aether", codename: "AETHER-∞", cnName: "苍穹", role: "传说 / LEGEND", emoji: "🐉", color: "#FFF3B0", unlockDesc: "段位达到辐能战魂", cond: (s) => rankForXp(s.xp).idx >= 24 },
 ];
 
 /* ================= 巅峰层（RADIANT III 之上） ================= */

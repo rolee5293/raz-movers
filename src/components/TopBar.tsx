@@ -49,7 +49,9 @@ export function TopBar({ save }: { save: SaveState }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <CloudDot />
-            <span className="val-title truncate text-xs text-val-text">{agent.codename}</span>
+            <span className="val-title truncate text-xs text-val-text">
+              {agent.cnName} <span className="text-val-dim">{agent.codename}</span>
+            </span>
             <RankChip rank={rank} size="sm" />
             <PeakChip level={peak} />
           </div>

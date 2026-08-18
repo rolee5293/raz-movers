@@ -169,7 +169,8 @@ export function ProfilePage({
               >
                 <p className={cn("text-3xl", !unlocked && "grayscale")}>{a.emoji}</p>
                 <p className="val-title mt-1 text-[11px]" style={{ color: unlocked ? a.color : "#9AA5AD" }}>
-                  {a.codename}
+                  {a.cnName}
+                  <span className="ml-1 text-val-dim">{a.codename}</span>
                 </p>
                 <p className="text-[8px] text-val-dim">{a.role}</p>
                 <p className="mt-1 text-[9px] leading-tight text-val-dim">
