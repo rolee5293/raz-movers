@@ -36,6 +36,6 @@ describe("测验闸：掌握必须有客观证据", () => {
          words: { cat: atLastStep(over) }, daily: {}, badges: [],
          agents: { unlocked: [], current: "sage-01" }, stats: {} } as unknown as SaveState);
     const merged = mergeSaves([mk({ quizPassed: true }, 10), mk({ quizPassed: false, ivl: LAST - 1 }, 99)]);
-    expect(merged.words.cat.quizPassed).toBe(true);
+    expect(merged?.words.cat.quizPassed).toBe(true);
   });
 });
