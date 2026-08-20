@@ -5,7 +5,12 @@ const KEY = "raz-movers-save-v1";
 
 export const SRS_STEPS = [1, 2, 4, 7, 15];
 export const DAILY_NEW_WORDS = 10;
-export const DAILY_REVIEW_CAP = 25;
+/**
+ * 每日复习上限。是天花板不是配额——dueReviewWords 只返回当天真正到期的词。
+ * 稳态需求 = DAILY_NEW_WORDS × SRS_STEPS.length，必须留出余量，
+ * 否则到期量长期超过上限，队列发散、SRS 间隔被静默拉长，"已掌握"永远涨不动。
+ */
+export const DAILY_REVIEW_CAP = 65;
 
 /* ================= 日期工具 ================= */
 
@@ -33,6 +38,16 @@ export function addDaysStr(dateStr: string, days: number): string {
 export const XP = {
   wordPerKnown: 2,
   wordBase: 10,
+  /**
+   * 复习单价独立于新词，且高于测验的每题分。
+   * 复习是唯一能推动"已掌握"的动作，却一度是全场单价最低的（2 XP/张，
+   * 而测验一题 10 XP 且可无限加练）——孩子理性地去刷测验，掌握数就永远不动。
+   */
+  reviewPerKnown: 8,
+  /** 当天复习任务做完的完成奖。cap 调高后复习变长，需要一个终点 */
+  reviewClearBonus: 40,
+  /** 每有一个词达成"已掌握"的奖励：为结果付钱，不只为动作付钱 */
+  masteredBonus: 20,
   quizPerCorrect: 10,
   quizPerfect: 50,
   readPerCorrect: 10,
@@ -261,9 +276,11 @@ export function ensureDayRecord(save: SaveState, date: string, totalWords: numbe
 export function gradeWord(prev: WordProgress | undefined, known: boolean, today: string): WordProgress {
   if (!prev) {
     // 新词首次学习
+    // 一眼就认得的词直接进第二步，省掉一轮——否则孩子本来就会的词也要走满全程
+    const ivl = known ? 1 : 0;
     return {
-      ivl: known ? 0 : 0,
-      due: addDaysStr(today, 1),
+      ivl,
+      due: addDaysStr(today, SRS_STEPS[ivl]),
       mastered: false,
       lapses: known ? 0 : 1,
       learned: today,

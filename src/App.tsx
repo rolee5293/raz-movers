@@ -174,16 +174,22 @@ export default function App() {
       if (r.known) known++;
       words[r.word] = gradeWord(words[r.word], r.known, today);
     }
+    const masteredNow = recountMastered(words);
+    const newlyMastered = Math.max(0, masteredNow - save.stats.masteredCount);
     const next: SaveState = {
       ...save,
       words,
-      stats: { ...save.stats, masteredCount: recountMastered(words) },
+      stats: { ...save.stats, masteredCount: masteredNow },
       daily: {
         ...save.daily,
         [today]: { ...rec, reviewTask: { ...rec.reviewTask, done: true, known } },
       },
     };
-    const taskXp = known * XP.wordPerKnown + XP.wordBase;
+    const taskXp =
+      known * XP.reviewPerKnown +
+      XP.wordBase +
+      XP.reviewClearBonus +
+      newlyMastered * XP.masteredBonus;
     const { save: withBonus, bonusXp } = withDailyBonus(next, today);
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };

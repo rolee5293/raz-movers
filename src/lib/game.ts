@@ -87,7 +87,7 @@ export const BADGES: BadgeDef[] = [
   { id: "month-ops", icon: "🗓️", name: "双周连胜", en: "14-DAY OPS", desc: "连续打卡 14 天", cond: (_s, h) => h.maxStreak >= 14 },
   { id: "centurion", icon: "⚔️", name: "五十词斩", en: "WORD-50", desc: "累计掌握 50 词", cond: (s) => s.stats.masteredCount >= 50 },
   { id: "half-k", icon: "🛡️", name: "二百词库", en: "ARSENAL-200", desc: "累计掌握 200 词", cond: (s) => s.stats.masteredCount >= 200 },
-  { id: "war-stock", icon: "🏭", name: "五百军火库", en: "WAR STOCK", desc: "累计掌握 500 词", cond: (s) => s.stats.masteredCount >= 500 },
+  { id: "war-stock", icon: "🏭", name: "军火重库", en: "WAR STOCK", desc: "累计掌握 350 词", cond: (s) => s.stats.masteredCount >= 350 },
   { id: "deadeye", icon: "🎯", name: "神枪手", en: "DEADEYE", desc: "单次测验 10/10 满分", cond: (s) => s.stats.perfectQuizzes >= 1 },
   { id: "marksman", icon: "🏅", name: "王牌射手", en: "MARKSMAN", desc: "累计 5 次测验满分", cond: (s) => s.stats.perfectQuizzes >= 5 },
   { id: "combo-five", icon: "⚡", name: "五连绝世", en: "COMBO x5", desc: "测验连击达到 5 连击", cond: (s) => s.stats.bestCombo >= 5 },
@@ -145,7 +145,12 @@ export interface PeakDef {
 
 /** 巅峰 1 的门槛就是 RADIANT III 的线：满级当天即可入巅峰，补差立刻兑现成看得见的等级 */
 
-const PEAK_XP = [31200, 33560, 36000, 38520, 41120, 43800, 46560, 49400, 52320, 55320];
+/**
+ * 巅峰各层的 XP 门槛。2026-08 复习单价上调后 XP 收入约为原来的 2.4 倍，
+ * 门槛按同比例重算，否则十层几周就刷完、之后再无目标。
+ * 已核对两个孩子的真实存档：重算后巅峰层级不下降。
+ */
+const PEAK_XP = [31200, 36864, 42720, 48768, 55008, 61440, 68064, 74880, 81888, 89088];
 
 export const PEAKS: PeakDef[] = [
   { level: 1, name: "觉醒", en: "AWAKEN", minXp: PEAK_XP[0], challenge: "累计 15 个完美行动日",

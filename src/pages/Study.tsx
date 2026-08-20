@@ -133,7 +133,15 @@ export function StudyPage({ save, vocab, onFinishNew, onFinishReview, onExit }: 
             </div>
           </div>
           <p className="mt-4 text-xs text-val-dim">
-            获得 <span className="text-val-gold">+{known * XP.wordPerKnown + XP.wordBase} XP</span>
+            获得{" "}
+            <span className="text-val-gold">
+              +
+              {phase === "new"
+                ? known * XP.wordPerKnown + XP.wordBase
+                : known * XP.reviewPerKnown + XP.wordBase + XP.reviewClearBonus}{" "}
+              XP
+            </span>
+            {phase === "review" ? " · 掌握的词每个再 +" + XP.masteredBonus : ""}
             {phase === "new" && reviewWords.length > 0 ? " · 接下来是今日复习" : ""}
           </p>
           <ValButton className="mt-5 w-full" onClick={finishPhase}>
