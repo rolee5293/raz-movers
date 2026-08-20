@@ -43,14 +43,19 @@ describe("gradeWord", () => {
     expect(p.lapses).toBe(1);
   });
 
-  it("连续答对走完全部步数后才算掌握", () => {
+  it("连续答对走完全部步数、且在测验里答对过，才算掌握", () => {
     let p = gradeWord(undefined, false, D0); // ivl 0
     for (let i = 1; i < SRS_STEPS.length; i++) {
       p = gradeWord(p, true, D0);
       expect(p.mastered).toBe(false);
       expect(p.ivl).toBe(i);
     }
+    // 步数走完但没过测验闸：压在最后一步，不判掌握
     p = gradeWord(p, true, D0);
+    expect(p.mastered).toBe(false);
+    expect(p.ivl).toBe(SRS_STEPS.length - 1);
+    // 测验里答对过之后再复习答对，才毕业
+    p = gradeWord({ ...p, quizPassed: true }, true, D0);
     expect(p.mastered).toBe(true);
   });
 

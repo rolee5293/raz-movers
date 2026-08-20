@@ -31,6 +31,11 @@ export interface WordProgress {
   ivl: number; // index into SRS_STEPS [1,2,4,7,15]
   due: string; // YYYY-MM-DD
   mastered: boolean;
+  /**
+   * 是否在测验里客观答对过。复习的"认得/不认得"是孩子自己点的，
+   * 只认它等于给蒙对发钱——所以"已掌握"额外要求这一关。
+   */
+  quizPassed?: boolean;
   lapses: number;
   learned: string; // date first learned
 }
@@ -93,6 +98,8 @@ export interface SaveState {
    * 否则一次云端合并就会抹掉标记、导致重复补差。
    */
   xpRate?: number;
+  /** 测验闸迁移标记。缺失表示旧存档，迁移时把已有词一次性视为已过测验闸 */
+  quizGate?: number;
   createdAt: string;
   xp: number;
   wordCursor: number; // next unlearned word global index

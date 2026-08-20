@@ -15,11 +15,14 @@ const max = (a = 0, b = 0) => (a > b ? a : b);
 
 /** 单词复习状态：取更靠前的那个（已掌握 > 阶段更高 > 到期更晚） */
 function mergeWord(a: WordProgress, b: WordProgress): WordProgress {
-  if (a.mastered !== b.mastered) return a.mastered ? a : b;
-  if (a.ivl !== b.ivl) return a.ivl > b.ivl ? a : b;
-  if (a.due !== b.due) return a.due > b.due ? a : b;
+  // 任一设备在测验里答对过就算过闸，必须显式带上：下面几个分支整份返回 a 或 b，
+  // 漏掉就会把另一台设备挣来的过闸记录丢掉。
+  const quizPassed = !!a.quizPassed || !!b.quizPassed;
+  if (a.mastered !== b.mastered) return { ...(a.mastered ? a : b), quizPassed };
+  if (a.ivl !== b.ivl) return { ...(a.ivl > b.ivl ? a : b), quizPassed };
+  if (a.due !== b.due) return { ...(a.due > b.due ? a : b), quizPassed };
   // 状态等价时保留更早的首学日期与更高的失误计数（失误数用于统计，取大不丢信息）
-  return { ...a, learned: a.learned < b.learned ? a.learned : b.learned, lapses: max(a.lapses, b.lapses) };
+  return { ...a, quizPassed, learned: a.learned < b.learned ? a.learned : b.learned, lapses: max(a.lapses, b.lapses) };
 }
 
 /** 每日任务：done 取或，计数取大 */
@@ -76,6 +79,7 @@ function mergeTwo(a: SaveState, b: SaveState): SaveState {
     // 必须显式带上：这个对象是重建的，漏掉一个字段就等于把它从存档里抹掉。
     // xpRate 一旦丢失，已补过差的设备会被判为未迁移而再补一次。
     xpRate: max(a.xpRate ?? 1, b.xpRate ?? 1),
+    quizGate: max(a.quizGate ?? 0, b.quizGate ?? 0),
     createdAt: a.createdAt < b.createdAt ? a.createdAt : b.createdAt,
     xp: max(a.xp, b.xp),
     wordCursor: max(a.wordCursor, b.wordCursor),

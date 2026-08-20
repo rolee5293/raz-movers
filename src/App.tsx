@@ -194,12 +194,15 @@ export default function App() {
     commit(addDayXp(withBonus, today, taskXp + bonusXp), taskXp + bonusXp);
   };
 
-  const finishQuiz = (score: number, total: number, bestCombo: number) => {
+  const finishQuiz = (score: number, total: number, bestCombo: number, passedWords: string[] = []) => {
     const today = todayStr();
     const rec = save.daily[today];
     const perfect = score === total && total > 0;
+    const words = { ...save.words };
+    for (const w of passedWords) if (words[w]) words[w] = { ...words[w], quizPassed: true };
     const next: SaveState = {
       ...save,
+      words,
       stats: {
         ...save.stats,
         quizzesTaken: save.stats.quizzesTaken + 1,

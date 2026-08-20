@@ -147,6 +147,7 @@ function defaultSave(): SaveState {
   return {
     version: 1,
     xpRate: 2,
+    quizGate: 1,
     createdAt: todayStr(),
     xp: 0,
     wordCursor: 0,
@@ -170,6 +171,18 @@ function defaultSave(): SaveState {
   };
 }
 
+/**
+ * 测验闸迁移：闸是新加的，旧存档里的词都没有 quizPassed 标记。
+ * 不放行的话它们会被永久卡在最后一步——等于用新规矩追罚已经做完的功课。
+ * 一次性把已有词视为已过闸，闸只对之后新学的词生效。
+ */
+export function migrateQuizGate(save: SaveState): SaveState {
+  if ((save.quizGate ?? 0) >= 1) return save;
+  const words: Record<string, WordProgress> = {};
+  for (const [k, v] of Object.entries(save.words ?? {})) words[k] = { ...v, quizPassed: true };
+  return { ...save, words, quizGate: 1 };
+}
+
 export function loadSave(): SaveState {
   try {
     const raw = localStorage.getItem(KEY);
@@ -178,12 +191,13 @@ export function loadSave(): SaveState {
     if (parsed.version !== 1) return defaultSave();
     // xpRate 必须显式取 parsed 的值：展开时"键不存在"不会覆盖 defaultSave() 的 2，
     // 旧存档会被当成已补差而跳过迁移——补差就永远不会发生。
-    return migrateXpRate({
+    return migrateQuizGate(migrateXpRate({
       ...defaultSave(),
       ...parsed,
       xpRate: parsed.xpRate ?? 1,
+      quizGate: parsed.quizGate ?? 0,
       stats: { ...defaultSave().stats, ...parsed.stats },
-    });
+    }));
   } catch {
     return defaultSave();
   }
@@ -289,6 +303,11 @@ export function gradeWord(prev: WordProgress | undefined, known: boolean, today:
   if (known) {
     const nextIvl = prev.ivl + 1;
     if (nextIvl >= SRS_STEPS.length) {
+      // 间隔走完还不够：没在测验里客观答对过，就压在最后一步继续轮换，
+      // 直到它在测验里露过面并答对。否则一路点"认得"就能刷出满屏"已掌握"。
+      if (!prev.quizPassed) {
+        return { ...prev, ivl: SRS_STEPS.length - 1, due: addDaysStr(today, SRS_STEPS[SRS_STEPS.length - 1]) };
+      }
       return { ...prev, ivl: SRS_STEPS.length - 1, mastered: true, due: addDaysStr(today, 365) };
     }
     return { ...prev, ivl: nextIvl, due: addDaysStr(today, SRS_STEPS[nextIvl]) };

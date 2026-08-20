@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 interface Props {
   save: SaveState;
   vocab: Word[];
-  onFinish: (score: number, total: number, bestCombo: number) => void;
+  onFinish: (score: number, total: number, bestCombo: number, passedWords: string[]) => void;
   onExit: () => void;
 }
 
@@ -25,6 +25,8 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
   const [combo, setCombo] = useState(0);
   const [bestCombo, setBestCombo] = useState(0);
   const [score, setScore] = useState(0);
+  // 答对的词记下来，用于解开该词的测验闸
+  const [passedWords, setPassedWords] = useState<string[]>([]);
   const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
   const [missed, setMissed] = useState<Word[]>([]);
   const [audioDead, setAudioDead] = useState(false);
@@ -65,6 +67,7 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
 
   const answer = (correct: boolean, pickedIdx: number | null) => {
     if (phase !== "playing") return;
+    if (correct && current) setPassedWords((w) => (w.includes(current.word.word) ? w : [...w, current.word.word]));
     setPicked(pickedIdx);
     setLastCorrect(correct);
     setPhase("feedback");
@@ -95,7 +98,7 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
   useEffect(() => {
     if (phase === "result" && !finishedRef.current && quiz.length > 0) {
       finishedRef.current = true;
-      onFinish(score, quiz.length, bestCombo);
+      onFinish(score, quiz.length, bestCombo, passedWords);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
@@ -133,7 +136,7 @@ export function QuizPage({ save, vocab, onFinish, onExit }: Props) {
     const total = quiz.length;
     const pct = Math.round((score / total) * 100);
     const grade = pct === 100 ? "S" : pct >= 80 ? "A" : pct >= 60 ? "B" : "C";
-    const xp = score * 8 + (score === total ? 10 : 0);
+    const xp = score * XP.quizPerCorrect + (score === total ? XP.quizPerfect : 0);
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center px-6">
         <div className="clip-card w-full max-w-md border border-val-line bg-val-panel bg-stripes p-6 text-center">
